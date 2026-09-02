@@ -298,6 +298,18 @@
     sections.forEach(function (s) { observer.observe(s); });
   }
 
+  /* The hero streaks repaint every frame; stop them once the hero is off screen. */
+  function initMesh() {
+    var mesh = $('.hero-mesh');
+    if (!mesh || !('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      mesh.classList.toggle('is-paused', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+
+    observer.observe(mesh);
+  }
+
   var revealObserver = null;
 
   function initReveal() {
@@ -354,6 +366,7 @@
     initNav();
     initHeaderState();
     initScrollSpy();
+    initMesh();
     initReveal();
     reveal(document);
 

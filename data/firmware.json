@@ -19,7 +19,7 @@
     "technology": "GPON",
     "chipset": "RTL9602",
     "featured": false,
-    "summary": "An independent operating system for RTL9602 based sticks, born out of clean-room reverse engineering.",
+    "summary": "An independent operating system for RTL9602 based ONT, born out of clean-room reverse engineering.",
     "features": []
   },
   {

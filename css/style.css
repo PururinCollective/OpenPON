@@ -40,6 +40,21 @@
   --container: 1180px;
   --gutter: 24px;
 
+
+  /* Hero mesh */
+  --mesh-line:            rgba(76, 63, 168, .20);
+  --mesh-line-far:        rgba(90, 80, 170, .10);
+  --mesh-node:            rgba(102, 45, 145, .55);
+  --mesh-node-alt:        rgba(43, 97, 219, .55);
+  --mesh-node-far:        rgba(110, 100, 180, .26);
+  --mesh-glow:            rgba(124, 58, 237, .10);
+  --mesh-glow-alt:        rgba(43, 97, 219, .10);
+  --mesh-glow-far:        rgba(124, 110, 220, .05);
+  --mesh-streak:          rgba(88, 40, 160, .95);
+  --mesh-streak-alt:      rgba(30, 85, 210, .95);
+  --mesh-streak-glow:     rgba(124, 58, 237, .26);
+  --mesh-streak-glow-alt: rgba(43, 97, 219, .26);
+
   --font: "Segoe UI", system-ui, -apple-system, "Inter", "Helvetica Neue", Arial, sans-serif;
   --mono: "Cascadia Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -64,6 +79,19 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
     --shadow:    0 4px 24px -8px rgba(0, 0, 0, .6);
     --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, .7);
+
+    --mesh-line:            rgba(150, 170, 255, .34);
+    --mesh-line-far:        rgba(130, 150, 235, .14);
+    --mesh-node:            rgba(196, 181, 253, .95);
+    --mesh-node-alt:        rgba(147, 197, 253, .95);
+    --mesh-node-far:        rgba(150, 160, 230, .34);
+    --mesh-glow:            rgba(139, 122, 255, .24);
+    --mesh-glow-alt:        rgba(96, 165, 250, .24);
+    --mesh-glow-far:        rgba(130, 140, 220, .06);
+    --mesh-streak:          rgba(232, 226, 255, 1);
+    --mesh-streak-alt:      rgba(196, 228, 255, 1);
+    --mesh-streak-glow:     rgba(150, 130, 255, .38);
+    --mesh-streak-glow-alt: rgba(110, 175, 255, .38);
   }
 }
 
@@ -262,6 +290,75 @@ ul { margin: 0; padding: 0; list-style: none; }
     radial-gradient(42% 55% at 78% 20%, rgba(37, 99, 235, .12), transparent 70%);
   pointer-events: none;
 }
+/* ---------- Abstract mesh: wired nodes with light streaks on the links ---------- */
+.hero-mesh {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Fade the mesh out before it reaches the stat strip. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 88%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 88%);
+}
+.hero-mesh svg { width: 100%; height: 100%; }
+
+/* Two depth planes: a soft one set back, a crisp one in front. */
+.mesh-edge line { stroke-linecap: round; }
+.mesh-far line   { stroke: var(--mesh-line-far); stroke-width: 1; }
+.mesh-near line  { stroke: var(--mesh-line);     stroke-width: 1.15; }
+
+.mesh-node circle { stroke: none; }
+.node-halo { fill: var(--mesh-glow); }
+.node-core { fill: var(--mesh-node); }
+.mesh-node-far .node-halo { fill: var(--mesh-glow-far); }
+.mesh-node-far .node-core { fill: var(--mesh-node-far); }
+/* Alternate the accent colour through the front nodes so it is not one flat hue.
+   Scoped to the near plane - unscoped it out-specifics the far-node rules above and
+   flattens the depth. Children run halo, core, halo, core, so 4n+3 / 4n+4 is one node. */
+.mesh-node-near circle:nth-child(4n+3) { fill: var(--mesh-glow-alt); }
+.mesh-node-near circle:nth-child(4n+4) { fill: var(--mesh-node-alt); }
+
+/* A streak is one short dash chasing along a 1000-unit polyline (pathLength) that
+   walks the mesh link to link, drawn twice: a long faint trail and a bright head. */
+.mesh-streak use {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: meshStreak var(--dur, 4s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+/* The trail lags the head by its own dash length, so it reads as light the head has
+   already passed through rather than a beam shining ahead of it. */
+.mesh-streak-tail use {
+  stroke: var(--mesh-streak-glow);
+  stroke-width: 2.8;
+  stroke-dasharray: 78 922;
+  animation-delay: calc(var(--delay, 0s) + var(--dur, 4s) * 0.072);
+}
+.mesh-streak-core use {
+  stroke: var(--mesh-streak);
+  stroke-width: 2;
+  stroke-dasharray: 10 990;
+}
+.mesh-streak-tail use:nth-child(even) { stroke: var(--mesh-streak-glow-alt); }
+.mesh-streak-core use:nth-child(even) { stroke: var(--mesh-streak-alt); }
+
+@keyframes meshStreak {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Stop the repaints entirely once the hero is scrolled past (set from main.js). */
+.hero-mesh.is-paused use { animation-play-state: paused; }
+
+/* Stacked layouts make the hero very tall; hold the mesh to the headline area so it
+   does not run the full length of the body copy. */
+@media (max-width: 940px) { .hero-mesh { bottom: auto; height: 640px; } }
+@media (max-width: 640px) { .hero-mesh { height: 540px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mesh-streak { display: none; }
+}
+
 .hero-inner {
   position: relative;
   display: grid;
@@ -308,7 +405,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   aspect-ratio: 594 / 512;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border);
-  background: #fff;
+  /* background: #fff; */
 }
 .hero-art img {
   width: 100%; height: 100%;
