@@ -37,7 +37,7 @@
         "name": "CATCrypt",
         "role": "Stick supply and firmware support",
         "website": null,
-        "contact": { "type": "Telegram", "value": "+375 29 532 3313", "url": null }
+        "contact": { "type": "Telegram", "value": "+375 29 532 3313", "url": "https://t.me/+375295323313" }
       }
     ]
   },
@@ -49,7 +49,7 @@
         "name": "\u00c1nzelox Zeravl\u00e1",
         "role": "ONT supply and firmware support",
         "website": null,
-        "contact": { "type": "Telegram", "value": "@Zeravla", "url": null }
+        "contact": { "type": "Telegram", "value": "@Zeravla", "url": "https://t.me/Zeravla" }
       }
     ]
   },
