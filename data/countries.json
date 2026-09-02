@@ -10,7 +10,7 @@
   { "name": "Lebanon",      "code": "LB", "region": "Middle East",   "operators": [] },
   { "name": "Saudi Arabia", "code": "SA", "region": "Middle East",   "operators": [] },
   { "name": "Georgia",      "code": "GE", "region": "Western Asia",  "operators": ["MagtiCom", "SilkNet"] },
-  { "name": "Turkey",       "code": "TR", "region": "Europe",        "operators": [] },
+  { "name": "Turkey",       "code": "TR", "region": "Europe",        "operators": ["Turktelekom", "Superonline", "Turknet", "Kablonet"] },
   { "name": "France",       "code": "FR", "region": "Europe",        "operators": ["Orange Fiber"] },
   { "name": "Italy",        "code": "IT", "region": "Europe",        "operators": [] },
   { "name": "Netherlands",  "code": "NL", "region": "Europe",        "operators": ["T-Mobile"] },
