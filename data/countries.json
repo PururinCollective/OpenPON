@@ -1,0 +1,19 @@
+[
+  { "name": "Malaysia",     "code": "MY", "region": "Asia Pacific",  "operators": ["TM Unifi", "TIME", "Maxis"] },
+  { "name": "Indonesia",    "code": "ID", "region": "Asia Pacific",  "operators": ["IndiHome", "and others"] },
+  { "name": "Japan",        "code": "JP", "region": "Asia Pacific",  "operators": ["NTT Hikari"] },
+  { "name": "China",        "code": "CN", "region": "Asia Pacific",  "operators": [] },
+  { "name": "Vietnam",      "code": "VN", "region": "Asia Pacific",  "operators": [] },
+  { "name": "Taiwan",       "code": "TW", "region": "Asia Pacific",  "operators": [] },
+  { "name": "UAE",          "code": "AE", "region": "Middle East",   "operators": [] },
+  { "name": "Jordan",       "code": "JO", "region": "Middle East",   "operators": [] },
+  { "name": "Lebanon",      "code": "LB", "region": "Middle East",   "operators": [] },
+  { "name": "Saudi Arabia", "code": "SA", "region": "Middle East",   "operators": [] },
+  { "name": "Turkey",       "code": "TR", "region": "Europe",        "operators": [] },
+  { "name": "France",       "code": "FR", "region": "Europe",        "operators": [] },
+  { "name": "Italy",        "code": "IT", "region": "Europe",        "operators": [] },
+  { "name": "Belarus",      "code": "BY", "region": "Europe",        "operators": [] },
+  { "name": "Russia",       "code": "RU", "region": "Europe",        "operators": [] },
+  { "name": "Canada",       "code": "CA", "region": "Americas",      "operators": [] },
+  { "name": "Brazil",       "code": "BR", "region": "Americas",      "operators": [] }
+]

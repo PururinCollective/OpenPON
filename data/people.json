@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Anime4000",
+    "country": "Malaysia",
+    "code": "MY",
+    "github": "https://github.com/Anime4000",
+    "focus": "Leading RTL960x GPON hacking",
+    "roles": ["Lead", "Firmware"]
+  },
+  {
+    "name": "djGrrr",
+    "country": "Canada",
+    "code": "CA",
+    "github": "https://github.com/djGrrr",
+    "focus": "Leading 8311 XGS-PON",
+    "roles": ["Lead", "Firmware"]
+  },
+  {
+    "name": "wackejohn",
+    "country": null,
+    "code": null,
+    "github": null,
+    "community": "right.com.cn",
+    "focus": "Leading Lantiq GPON hacking",
+    "roles": ["Lead", "Firmware"]
+  },
+  {
+    "name": "YuukiJapanTech",
+    "country": "Japan",
+    "code": "JP",
+    "github": "https://github.com/YuukiJapanTech",
+    "focus": "XGS-PON hacking, CA8271x firmware",
+    "roles": ["Lead", "Firmware"]
+  },
+  {
+    "name": "CATCrypt",
+    "country": "Belarus",
+    "code": "BY",
+    "github": null,
+    "focus": "Firmware development and field validation",
+    "roles": ["Developer", "Tester"]
+  },
+  {
+    "name": "Rajko Stojadinovic",
+    "country": null,
+    "code": null,
+    "github": "https://github.com/rajkosto",
+    "focus": "Core tooling and low-level development",
+    "roles": ["Developer", "Reverse engineering"]
+  },
+  {
+    "name": "stich86",
+    "country": null,
+    "code": null,
+    "github": "https://github.com/stich86",
+    "focus": "Firmware and OMCI development",
+    "roles": ["Developer", "Reverse engineering"]
+  },
+  {
+    "name": "Ryukura",
+    "country": null,
+    "code": null,
+    "github": "https://github.com/ryukora",
+    "focus": "Development and compatibility testing",
+    "roles": ["Developer", "Reverse engineering", "Tester"]
+  },
+  {
+    "name": "\u00c1nzelox Zeravl\u00e1",
+    "country": null,
+    "code": null,
+    "github": null,
+    "focus": "RTL9602 reverse engineering, ZRV OS developer",
+    "roles": ["Lead", "Reverse engineering", "Firmware"]
+  }
+]

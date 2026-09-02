@@ -1,0 +1,56 @@
+[
+  {
+    "country": "Malaysia",
+    "code": "MY",
+    "vendors": [
+      {
+        "name": "CureComp Technology",
+        "role": "Official NIJIKA firmware, reseller, system network integrator",
+        "website": "https://curecomp.my",
+        "contact": null
+      },
+      {
+        "name": "Perfect Network",
+        "role": "ISP, datacentre, system network integrator",
+        "website": "https://perfect.my",
+        "contact": null
+      },
+      {
+        "name": "Solid Wave WiFi",
+        "role": "System network integrator",
+        "website": "https://solidwavewifi.com",
+        "contact": null
+      },
+      {
+        "name": "SUBTel",
+        "role": "Fibre and optical equipment supply",
+        "website": null,
+        "contact": null
+      }
+    ]
+  },
+  {
+    "country": "Belarus",
+    "code": "BY",
+    "vendors": [
+      {
+        "name": "CATCrypt",
+        "role": "Stick supply and firmware support",
+        "website": null,
+        "contact": { "type": "Telegram", "value": "+375 29 532 3313", "url": null }
+      }
+    ]
+  },
+  {
+    "country": "Turkey",
+    "code": "TR",
+    "vendors": [
+      {
+        "name": "Murat",
+        "role": "Stick supply and firmware support",
+        "website": null,
+        "contact": { "type": "Telegram", "value": "@mrt4161171", "url": "https://t.me/mrt4161171" }
+      }
+    ]
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "name": "NIJIKA Firmware",
+    "authors": "Anime4000, et al.",
+    "technology": "GPON",
+    "chipset": "RTL960x",
+    "featured": true,
+    "summary": "A modern open firmware for Realtek GPON sticks, built for broad operator compatibility and real observability.",
+    "features": [
+      "Major OLT compatibility across regional operators",
+      "VEIP (Virtual Ethernet Interface Point) support",
+      "Unbound link speed, 1GbE to 2.5GbE",
+      "Metric export to Prometheus and Grafana"
+    ]
+  },
+  {
+    "name": "ZRV OS",
+    "authors": "\u00c1nzelox Zeravl\u00e1, et al.",
+    "technology": "GPON",
+    "chipset": "RTL9602",
+    "featured": false,
+    "summary": "An independent operating system for RTL9602 based sticks, born out of clean-room reverse engineering.",
+    "features": []
+  },
+  {
+    "name": "8311 Firmware",
+    "authors": "djGrrr, et al.",
+    "technology": "XGS-PON",
+    "chipset": "8311",
+    "featured": false,
+    "summary": "The reference open firmware project for XGS-PON sticks, widely used for 10G subscriber deployments.",
+    "features": []
+  },
+  {
+    "name": "CA8271x Firmware",
+    "authors": "YuukiJapanTech",
+    "technology": "XGS-PON",
+    "chipset": "CA8271x",
+    "featured": false,
+    "summary": "Open firmware targeting CA8271x XGS-PON hardware, with a focus on Japanese operator interoperability.",
+    "features": []
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "CureComp Technology",
+    "website": "https://curecomp.my",
+    "domain": "curecomp.my",
+    "country": "Malaysia",
+    "asn": null,
+    "role": "Official NIJIKA firmware partner, reseller & system network integrator"
+  },
+  {
+    "name": "Perfect Network Sdn. Bhd.",
+    "website": "https://perfect.my",
+    "domain": "perfect.my",
+    "country": "Malaysia",
+    "asn": "AS154516",
+    "role": "Internet service provider, datacentre & system network integrator"
+  },
+  {
+    "name": "Origin TechLab",
+    "website": null,
+    "domain": null,
+    "country": "Malaysia",
+    "asn": "AS153334",
+    "role": "Network operator & engineering support"
+  },
+  {
+    "name": "IP Core Sdn Bhd",
+    "website": "https://www.ipcore.com.my/",
+    "domain": "ipcore.com.my",
+    "country": "Malaysia",
+    "asn": "AS132890",
+    "role": "Network operator & transit provider"
+  },
+  {
+    "name": "Solid Wave WiFi",
+    "website": "https://solidwavewifi.com/",
+    "domain": "solidwavewifi.com",
+    "country": "Malaysia",
+    "asn": null,
+    "role": "System network integrator"
+  },
+  {
+    "name": "SUBTel Malaysia",
+    "website": null,
+    "domain": null,
+    "country": "Malaysia",
+    "asn": null,
+    "role": "Fibre infrastructure & optical equipment supply"
+  }
+]

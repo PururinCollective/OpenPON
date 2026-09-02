@@ -1,0 +1,20 @@
+[
+  {
+    "vendor": "Mikrotik",
+    "compatibility": "100%",
+    "level": "full",
+    "notes": "Full SFP cage compatibility across RouterBOARD and CCR platforms. The reference platform for Open PON testing."
+  },
+  {
+    "vendor": "TP-Link",
+    "compatibility": "Supported",
+    "level": "good",
+    "notes": "Works on SFP-equipped switches and routers. Behaviour varies by model and firmware revision."
+  },
+  {
+    "vendor": "Ubiquiti",
+    "compatibility": "Supported",
+    "level": "good",
+    "notes": "Operates in EdgeRouter and UniFi SFP ports. Verify link negotiation per model before deployment."
+  }
+]
