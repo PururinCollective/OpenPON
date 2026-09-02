@@ -1,0 +1,16 @@
+# openpon.org
+#
+# One wildcard group on purpose. robots.txt matching is winner-takes-all: a crawler
+# obeys the single most specific group that names it and ignores every other group,
+# so adding "User-agent: Googlebot / Allow: /" blocks below would make Googlebot skip
+# these Disallow rules entirely. Google, Bing, Yahoo (served by Bing) and DuckDuckGo
+# all honour this group, plus the wildcard and $ patterns used here.
+
+User-agent: *
+Allow: /
+
+# Source material that ships in the repo but is not part of the site.
+Disallow: /assets/*.md$
+Disallow: /assets/*.old$
+
+Sitemap: https://openpon.org/sitemap.xml
