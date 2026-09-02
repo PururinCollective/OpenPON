@@ -85,7 +85,7 @@
       var head =
         '<div class="fw-head">' +
           '<h3>' + esc(fw.name) + '</h3>' +
-          (fw.featured ? '<span class="fw-badge">Flagship</span>' : '') +
+          (fw.featured ? '<span class="fw-badge">Popular</span>' : '') +
           '<span class="fw-badge is-tech">' + esc(fw.technology) + '</span>' +
         '</div>';
 

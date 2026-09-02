@@ -502,6 +502,21 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .section-lede { font-size: 17.5px; color: var(--text-2); }
 
+/* Caveat that sits under a grid rather than above it - used for the disclosure about
+   vendor code that is not ours to open. */
+.section-note {
+  margin-top: 28px;
+  padding: 22px 26px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand-500);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 15.5px;
+  color: var(--text-2);
+  max-width: 92ch;
+}
+.section-note strong { color: var(--text); font-weight: 650; }
+
 /* ---------- Aligned vision ---------- */
 .aligned-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;

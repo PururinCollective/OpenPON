@@ -1,6 +1,6 @@
 [
   { "name": "Malaysia",     "code": "MY", "region": "Asia Pacific",  "operators": ["TM Unifi", "TIME", "Maxis"] },
-  { "name": "Indonesia",    "code": "ID", "region": "Asia Pacific",  "operators": ["IndiHome", "and others"] },
+  { "name": "Indonesia",    "code": "ID", "region": "Asia Pacific",  "operators": ["IndiHome", "Biznet", "et al."] },
   { "name": "Japan",        "code": "JP", "region": "Asia Pacific",  "operators": ["NTT Hikari"] },
   { "name": "China",        "code": "CN", "region": "Asia Pacific",  "operators": [] },
   { "name": "Vietnam",      "code": "VN", "region": "Asia Pacific",  "operators": [] },

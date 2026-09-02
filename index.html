@@ -46,7 +46,7 @@
 <meta name="twitter:image" content="https://openpon.org/assets/og-cover.png">
 <meta name="twitter:image:alt" content="Open PON Foundation — opening the future of network connectivity">
 
-<link rel="stylesheet" href="css/style.css?commit=899e21a">
+<link rel="stylesheet" href="css/style.css?commit=bb3fd47">
 
 <!-- ===================== Structured data ========================== -->
 <script type="application/ld+json">
@@ -443,8 +443,9 @@
             <svg viewBox="0 0 24 24"><path d="M12 2.5 4 6.5v6c0 4.6 3.4 7.9 8 9 4.6-1.1 8-4.4 8-9v-6z"/><path d="M8.75 12.2l2.2 2.2 4.3-4.4"/></svg>
           </div>
           <h3>Openness</h3>
-          <p>Firmware, documentation and protocol knowledge published in the open, so anyone can audit
-             what runs on their line instead of trusting a signed binary.</p>
+          <p>Firmware and protocol knowledge developed in the open, so behaviour can be audited rather
+             than taken on trust &mdash; and where vendor code stays closed, we say so instead of
+             papering over it.</p>
         </article>
         <article class="pillar">
           <div class="pillar-icon" aria-hidden="true">
@@ -475,8 +476,9 @@
             <svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
           </div>
           <h3>Privacy</h3>
-          <p>No mandatory vendor cloud, no silent telemetry, no remote management channel you never
-             asked for. Your line, your data, your metrics.</p>
+          <p>No vendor cloud, no silent telemetry. Where an operator mandates TR-069, the firmware
+             emulates it &mdash; management gets its answer, and nothing personal leaves your
+             network.</p>
         </article>
         <article class="pillar pillar-note">
           <h3>A word on responsibility</h3>
@@ -502,6 +504,17 @@
       <div class="firmware-grid" id="firmwareGrid" data-loading>
         <p class="loading">Loading firmware projects&hellip;</p>
       </div>
+
+      <p class="section-note">
+        <strong>What &ldquo;open&rdquo; means here.</strong> Not every layer is ours to open. Some
+        sticks still carry vendor code that has never been published &mdash; Huawei, Nokia, Calix
+		among them &mdash; and no amount of community work changes that. What these
+        projects do guarantee is everything built around it: developed in the open, auditable in
+        behaviour, tested against real operators for compatibility, and written so that nothing
+        personal is reported back. Where a network mandates TR-069, the firmware emulates it rather
+        than phoning home &mdash; the ISP gets a management endpoint, your data stays on your side of
+        the fibre.
+      </p>
     </div>
   </section>
 
@@ -706,6 +719,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?commit=899e21a"></script>
+<script src="js/main.js?commit=bb3fd47"></script>
 </body>
 </html>
