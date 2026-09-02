@@ -16,6 +16,19 @@
       .replace(/'/g, '&#39;');
   };
 
+  /* Cache-busting stamp, read from this script's own ?commit= in index.html. Taking it
+     from there means the JSON requests inherit whatever the page was stamped with, so a
+     release only has to rewrite index.html - not every data URL in here. */
+  var COMMIT = (function () {
+    var el = document.currentScript;
+    if (!el) {
+      var all = document.getElementsByTagName('script');
+      el = all[all.length - 1];
+    }
+    var match = el && el.src && el.src.match(/[?&]commit=([^&]*)/);
+    return match ? match[1] : '';
+  })();
+
   var $  = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) {
     return Array.prototype.slice.call((root || document).querySelectorAll(sel));
@@ -50,7 +63,12 @@
   }
 
   function loadJSON(file) {
-    return fetch('data/' + file, { cache: 'no-cache' }).then(function (res) {
+    /* The stamp is what makes these safe to cache hard; without one, fall back to
+       revalidating so an edit still shows up during local development. */
+    var url = 'data/' + file + (COMMIT ? '?commit=' + encodeURIComponent(COMMIT) : '');
+    var opts = COMMIT ? undefined : { cache: 'no-cache' };
+
+    return fetch(url, opts).then(function (res) {
       if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
       return res.json();
     });

@@ -18,6 +18,7 @@ data/*.json         all site content lives here
 assets/             logo, banner, sponsor logo, share image
 robots.txt          crawler rules + sitemap pointer
 sitemap.xml         single-page sitemap
+tools/              release helpers (not part of the site)
 ```
 
 ## Editing content
@@ -57,6 +58,48 @@ python -m http.server 8000 --bind 0.0.0.0
 
 Then <http://localhost:8000/>, or `http://<your-lan-ip>:8000/` from another device on the
 network. Browsers cache `style.css` hard — use **Ctrl+F5** after editing CSS.
+
+## Cache busting
+
+Every CSS, JS and JSON request carries the git commit it was released at:
+
+```
+css/style.css?commit=939577f
+js/main.js?commit=939577f
+data/companies.json?commit=939577f
+```
+
+Browsers treat a changed query string as a different file, so a release is picked up
+immediately instead of sitting behind a stale cache — the reason a plain CSS edit can take a
+hard refresh to appear.
+
+Stamp before uploading:
+
+```bash
+python tools/stamp-commit.py
+```
+
+That rewrites only the two references in `index.html`. The JSON files are not listed in the
+script and do not need to be: `main.js` reads the stamp off its own `<script src>` and
+appends it to every `data/` request, so one rewrite covers all seven files. Add another
+stylesheet or script to `index.html` and it gets picked up automatically.
+
+| Command                                | Effect                                  |
+| -------------------------------------- | --------------------------------------- |
+| `python tools/stamp-commit.py`         | stamp with the current short `HEAD`     |
+| `python tools/stamp-commit.py --check` | list what is stamped, change nothing    |
+| `python tools/stamp-commit.py --clear` | strip the stamps back off               |
+
+Re-running is safe — an existing stamp is replaced, not appended to.
+
+With no stamp present, `main.js` falls back to `cache: 'no-cache'` on the JSON so edits still
+show up during local development. The stamp is what makes those files safe to cache hard.
+
+The stamp is `HEAD` at the moment you run the script, so stamping and then committing leaves
+the page naming the previous commit. That is harmless — the value only has to *change* when
+the content does — but to keep them aligned, stamp after committing and amend.
+
+`tools/` is not part of the site and does not need uploading.
 
 ## Hero mesh animation
 
@@ -131,12 +174,12 @@ tools also force a re-scrape after you change the tags:
 
 ## Deploying
 
-Upload `index.html`, `robots.txt`, `sitemap.xml`, `css/`, `js/`, `data/` and `assets/` to the
-web root. Any static host will do. `data/` must sit alongside `index.html` and stay publicly
-readable, or the page renders empty.
+Run `python tools/stamp-commit.py`, then upload `index.html`, `robots.txt`, `sitemap.xml`,
+`css/`, `js/`, `data/` and `assets/` to the web root. Any static host will do. `data/` must
+sit alongside `index.html` and stay publicly readable, or the page renders empty.
 
-Two things in the repo are **not** part of the site and do not need uploading: `ONF_TMP.png`
-and `perfect.png` at the root, and the `*.md` briefs plus `logo-mark.svg.old` currently inside
+Some things in the repo are **not** part of the site and do not need uploading: `tools/`,
+`ONF_TMP.png` and `perfect.png` at the root, and the `*.md` briefs plus `logo-mark.svg.old` currently inside
 `assets/`. Anything under `assets/` is served, so those briefs would be publicly reachable —
 `robots.txt` asks crawlers to skip them, but that only stops indexing, not access. Move them
 out of `assets/` before deploying if they should not be public.
