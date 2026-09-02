@@ -42,6 +42,18 @@
     ]
   },
   {
+    "country": "Dominican Republic",
+    "code": "DO",
+    "vendors": [
+      {
+        "name": "\u00c1nzelox Zeravl\u00e1",
+        "role": "ONT supply and firmware support",
+        "website": null,
+        "contact": { "type": "Telegram", "value": "@Zeravla", "url": null }
+      }
+    ]
+  },
+  {
     "country": "Turkey",
     "code": "TR",
     "vendors": [

@@ -41,6 +41,14 @@
   --gutter: 24px;
 
 
+  /* Hero art glass */
+  --glass-bg:        linear-gradient(150deg, rgba(255, 255, 255, .50), rgba(244, 243, 255, .26));
+  --glass-fallback:  rgba(252, 252, 255, .92);
+  --glass-hairline:  rgba(118, 108, 190, .18);
+  --glass-edge:      rgba(255, 255, 255, .85);
+  --glass-sheen:     rgba(255, 255, 255, .50);
+  --glass-spot:      rgba(255, 255, 255, .55);
+
   /* Hero mesh */
   --mesh-line:            rgba(76, 63, 168, .20);
   --mesh-line-far:        rgba(90, 80, 170, .10);
@@ -79,6 +87,13 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
     --shadow:    0 4px 24px -8px rgba(0, 0, 0, .6);
     --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, .7);
+
+    --glass-bg:        linear-gradient(150deg, rgba(122, 132, 205, .14), rgba(30, 36, 68, .10));
+    --glass-fallback:  rgba(18, 26, 44, .90);
+    --glass-hairline:  rgba(176, 190, 255, .16);
+    --glass-edge:      rgba(205, 215, 255, .26);
+    --glass-sheen:     rgba(190, 205, 255, .13);
+    --glass-spot:      rgba(175, 190, 255, .20);
 
     --mesh-line:            rgba(150, 170, 255, .34);
     --mesh-line-far:        rgba(130, 150, 235, .14);
@@ -398,18 +413,50 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--surface);
 }
 
+/* Frosted glass panel. The artwork is a transparent PNG, so the mesh animating behind
+   the hero reads through it - backdrop-filter blurs that, leaving the strands sharp
+   outside the panel and soft within, which is what sells it as a pane of glass. */
 .hero-art {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
   aspect-ratio: 594 / 512;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+          backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid var(--glass-hairline);
   box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
-  /* background: #fff; */
 }
 .hero-art img {
+  position: relative;
+  z-index: 1;
   width: 100%; height: 100%;
   object-fit: cover; object-position: 100% 50%;
+}
+
+/* The glass surface itself: a fixed diagonal sheen, a specular spot that follows the
+   pointer, and the rim light. Above the artwork, because the artwork sits inside the
+   pane rather than on top of it. An inset shadow on .hero-art would paint under the
+   image and be hidden by it, hence a layer of its own. */
+.hero-art::after {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(60% 46% at var(--gx, 24%) var(--gy, 6%), var(--glass-spot), transparent 62%),
+    linear-gradient(145deg, var(--glass-sheen) 0%, transparent 38%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 0 0 1px var(--glass-hairline),
+    inset 0 -20px 40px -28px var(--glass-sheen);
+}
+
+/* Firefox below 103 and anything else without the filter: lean on an opaque tint so the
+   panel still separates from the mesh instead of looking like a washed-out box. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hero-art { background: var(--glass-fallback); }
 }
 
 /* ---------- Stat strip ---------- */
@@ -548,7 +595,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .fw-card h3 { font-size: 20px; }
 .fw-card.is-featured h3 { font-size: 26px; letter-spacing: -.03em; }
 
-.fw-badge {
+.fw-badge,
+.device-badge {
   font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
   padding: 5px 10px; border-radius: 999px;
   background: var(--grad); color: #fff;
@@ -576,6 +624,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .fw-card.is-featured .fw-summary { font-size: 17px; }
 
 .fw-features { display: grid; gap: 10px; }
+.device-features { align-self: center; }
 .fw-features li {
   position: relative;
   padding-left: 30px;
@@ -608,8 +657,42 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 .device-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--border-2); }
-.device-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.device-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.device-top .compat { margin-left: auto; }
 .device-card h3 { font-size: 19px; }
+
+/* MikroTik gets the same wide treatment as the flagship firmware card. */
+.device-card.is-featured {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 34px; align-items: start;
+  padding: 38px 34px;
+  border-color: color-mix(in srgb, var(--brand-500) 30%, transparent);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--brand-500) 7%, var(--surface)),
+    color-mix(in srgb, var(--blue-600) 6%, var(--surface)));
+}
+.device-card.is-featured:hover { transform: none; }
+.device-card.is-featured h3 { font-size: 26px; letter-spacing: -.03em; }
+.device-main { display: flex; flex-direction: column; gap: 14px; }
+.device-summary { font-size: 17px; color: var(--text-2); }
+
+.device-pick {
+  font-size: 15.5px; color: var(--text-2);
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.device-pick-label {
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--brand-600);
+  margin-bottom: 5px;
+}
+.device-pick b { color: var(--text); font-weight: 700; }
+@media (prefers-color-scheme: dark) { .device-pick-label { color: var(--brand-300); } }
 .compat {
   font-size: 12px; font-weight: 700; letter-spacing: .04em;
   padding: 5px 11px; border-radius: 999px; white-space: nowrap;
@@ -624,9 +707,15 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--blue-600);
   border: 1px solid color-mix(in srgb, var(--blue-600) 26%, transparent);
 }
+.compat.level-open {
+  background: color-mix(in srgb, var(--brand-500) 12%, transparent);
+  color: var(--brand-600);
+  border: 1px solid color-mix(in srgb, var(--brand-500) 28%, transparent);
+}
 @media (prefers-color-scheme: dark) {
   .compat.level-full { color: #4ade80; }
   .compat.level-good { color: var(--blue-300); }
+  .compat.level-open { color: var(--brand-300); }
 }
 .device-card p { font-size: 15.5px; color: var(--text-2); }
 
@@ -977,7 +1066,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .aligned-grid, .pillars, .firmware-grid, .device-grid, .risk-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .fw-card.is-featured { grid-column: span 2; grid-template-columns: 1fr; gap: 22px; padding: 30px 26px; }
+  .fw-card.is-featured,
+  .device-card.is-featured { grid-column: span 2; grid-template-columns: 1fr; gap: 22px; padding: 30px 26px; }
 
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-sponsor { grid-column: span 2; max-width: 420px; }
@@ -1004,7 +1094,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .country-grid, .people-grid, .company-grid, .supplier-list {
     grid-template-columns: 1fr;
   }
-  .fw-card.is-featured { grid-column: span 1; }
+  .fw-card.is-featured,
+  .device-card.is-featured { grid-column: span 1; }
 
   .safety-card { padding: 30px 22px; border-radius: var(--radius); }
   .principle { padding: 22px 20px; }

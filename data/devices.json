@@ -1,9 +1,26 @@
 [
   {
-    "vendor": "Mikrotik",
+    "vendor": "MikroTik",
     "compatibility": "100%",
     "level": "full",
-    "notes": "Full SFP cage compatibility across RouterBOARD and CCR platforms. The reference platform for Open PON testing."
+    "featured": true,
+    "summary": "The reference platform for Open PON testing, and the vendor that made 2.5 Gbps PON sticks practical. RouterOS carried 2.5G SFP link rates from v7.11, ahead of most of the market.",
+    "recommended": {
+      "model": "RB5009",
+      "note": "the most popular host by a distance, and the one we recommend \u2014 its 10G SFP+ cage takes GPON and XGS-PON sticks alike"
+    },
+    "features": [
+      "2.5 Gbps SFP link rates since RouterOS v7.11",
+      "Full SFP cage compatibility across RouterBOARD and CCR platforms",
+      "Optical DDM readings exposed directly in RouterOS, no vendor tooling needed",
+      "Every firmware we list is regression tested against it first"
+    ]
+  },
+  {
+    "vendor": "Banana Pi BPI-R4",
+    "compatibility": "Open source",
+    "level": "open",
+    "notes": "MediaTek Filogic 880 board with two SFP+ cages, running OpenWrt. An open stick in an OpenWrt host makes the whole path from the fibre to the LAN open source, with no vendor firmware left in it."
   },
   {
     "vendor": "TP-Link",

@@ -17,7 +17,7 @@
   },
   {
     "name": "wackejohn",
-    "country": null,
+    "country": "China",
     "code": null,
     "github": null,
     "community": "right.com.cn",
@@ -31,6 +31,14 @@
     "github": "https://github.com/YuukiJapanTech",
     "focus": "XGS-PON hacking, CA8271x firmware",
     "roles": ["Lead", "Firmware"]
+  },
+  {
+    "name": "\u00c1nzelox Zeravl\u00e1",
+    "country": "Dominican Republic",
+    "code": "DO",
+    "github": null,
+    "focus": "RTL9602 reverse engineering, ZRV OS developer",
+    "roles": ["Lead", "Reverse engineering", "Firmware"]
   },
   {
     "name": "CATCrypt",
@@ -50,26 +58,58 @@
   },
   {
     "name": "stich86",
-    "country": null,
-    "code": null,
+    "country": "Italy",
+    "code": "IT",
     "github": "https://github.com/stich86",
     "focus": "Firmware patches",
     "roles": ["Developer", "Tester", "Reverse engineering"]
   },
   {
     "name": "Ryukura",
-    "country": null,
-    "code": null,
+    "country": "Indonesia",
+    "code": "ID",
     "github": "https://github.com/ryukora",
     "focus": "Development and compatibility testing",
     "roles": ["Developer", "Reverse engineering", "Tester"]
   },
   {
-    "name": "\u00c1nzelox Zeravl\u00e1",
-    "country": null,
-    "code": null,
-    "github": null,
-    "focus": "RTL9602 reverse engineering, ZRV OS developer",
-    "roles": ["Lead", "Reverse engineering", "Firmware"]
+    "name": "tdmadam",
+    "country": "Ukraine",
+    "code": "UA",
+    "github": "https://github.com/tdmadam",
+    "focus": "Development and compatibility testing",
+    "roles": ["Reverse engineering", "Tester"]
+  },
+  {
+    "name": "vuducdong",
+    "country": "Vietnam",
+    "code": "VN",
+    "github": "https://github.com/vuducdong",
+    "focus": "Development and compatibility testing",
+    "roles": ["Reverse engineering", "Tester"]
+  },
+  {
+    "name": "Jason Huang",
+    "country": "Taiwan",
+    "code": "TW",
+    "github": "https://github.com/jason-akw",
+    "focus": "Development and compatibility testing",
+    "roles": ["Reverse engineering", "Tester"]
+  },
+  {
+    "name": "Power Li",
+    "country": "Taiwan",
+    "code": "TW",
+    "github": "https://github.com/pccr10001",
+    "focus": "Development and compatibility testing",
+    "roles": ["Reverse engineering", "Tester"]
+  },
+  {
+    "name": "Andrii Miroshnychenko",
+    "country": "Ukraine",
+    "code": "UA",
+    "github": "https://github.com/zentavr",
+    "focus": "Development and compatibility testing",
+    "roles": ["Reverse engineering", "Tester"]
   }
 ]

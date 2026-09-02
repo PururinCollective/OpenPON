@@ -116,15 +116,47 @@
   }
 
   function renderDevices(list, el) {
-    el.innerHTML = list.map(function (d) {
-      return '<article class="device-card">' +
-               '<div class="device-top">' +
-                 '<h3>' + esc(d.vendor) + '</h3>' +
-                 '<span class="compat level-' + esc(d.level) + '">' + esc(d.compatibility) + '</span>' +
+    var sorted = list.slice().sort(function (a, b) {
+      return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+    });
+
+    el.innerHTML = sorted.map(function (d) {
+      var head =
+        '<div class="device-top">' +
+          '<h3>' + esc(d.vendor) + '</h3>' +
+          (d.featured ? '<span class="device-badge">Flagship</span>' : '') +
+          '<span class="compat level-' + esc(d.level) + '">' + esc(d.compatibility) + '</span>' +
+        '</div>';
+
+      if (!d.featured) {
+        return '<article class="device-card">' + head +
+                 '<p>' + esc(d.notes) + '</p>' +
+               '</article>';
+      }
+
+      var pick = d.recommended
+        ? '<p class="device-pick">' +
+            '<span class="device-pick-label">Recommended</span>' +
+            '<b>' + esc(d.recommended.model) + '</b> &mdash; ' + esc(d.recommended.note) +
+          '</p>'
+        : '';
+
+      var features = (d.features && d.features.length)
+        ? '<ul class="fw-features device-features">' + d.features.map(function (f) {
+            return '<li>' + esc(f) + '</li>';
+          }).join('') + '</ul>'
+        : '';
+
+      return '<article class="device-card is-featured">' +
+               '<div class="device-main">' +
+                 head +
+                 (d.summary ? '<p class="device-summary">' + esc(d.summary) + '</p>' : '') +
+                 pick +
                '</div>' +
-               '<p>' + esc(d.notes) + '</p>' +
+               features +
              '</article>';
     }).join('');
+
     el.removeAttribute('data-loading');
   }
 
@@ -328,6 +360,37 @@
     observer.observe(mesh);
   }
 
+  /* Specular spot on the hero glass. Pointer-driven only - it never moves on its own,
+     so there is nothing here for prefers-reduced-motion to suppress. */
+  function initGlass() {
+    var art = $('.hero-art');
+    if (!art || !window.matchMedia('(hover: hover)').matches) return;
+
+    var frame = null;
+    var pending = null;
+
+    function paint() {
+      frame = null;
+      art.style.setProperty('--gx', pending.x.toFixed(1) + '%');
+      art.style.setProperty('--gy', pending.y.toFixed(1) + '%');
+    }
+
+    art.addEventListener('pointermove', function (e) {
+      var box = art.getBoundingClientRect();
+      pending = {
+        x: ((e.clientX - box.left) / box.width) * 100,
+        y: ((e.clientY - box.top) / box.height) * 100
+      };
+      if (!frame) frame = requestAnimationFrame(paint);
+    });
+
+    art.addEventListener('pointerleave', function () {
+      if (frame) { cancelAnimationFrame(frame); frame = null; }
+      art.style.removeProperty('--gx');
+      art.style.removeProperty('--gy');
+    });
+  }
+
   var revealObserver = null;
 
   function initReveal() {
@@ -385,6 +448,7 @@
     initHeaderState();
     initScrollSpy();
     initMesh();
+    initGlass();
     initReveal();
     reveal(document);
 
