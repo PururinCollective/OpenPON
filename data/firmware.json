@@ -1,7 +1,7 @@
 [
   {
     "name": "NIJIKA Firmware",
-    "authors": "Anime4000, et al.",
+    "authors": "Anime4000, rajkosto, stich86, O3, et al.",
     "technology": "GPON",
     "chipset": "RTL960x",
     "featured": true,

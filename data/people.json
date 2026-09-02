@@ -53,8 +53,8 @@
     "country": null,
     "code": null,
     "github": "https://github.com/stich86",
-    "focus": "Firmware and OMCI development",
-    "roles": ["Developer", "Reverse engineering"]
+    "focus": "Firmware patches",
+    "roles": ["Developer", "Tester", "Reverse engineering"]
   },
   {
     "name": "Ryukura",
