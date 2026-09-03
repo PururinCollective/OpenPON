@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ==========================================================================
    Open PON Foundation — openpon.org
    ========================================================================== */
@@ -976,7 +977,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .footer-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr) minmax(0, .95fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.45fr) minmax(0, .95fr);
   gap: 48px;
   padding-bottom: 56px;
 }
@@ -1002,6 +1003,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: color .18s ease;
 }
 .footer-nav a:hover { color: #fff; }
+/* Mark links that leave the site, so an outbound one does not read as another anchor.
+   nowrap keeps a domain from breaking at its own hyphen - "hack-" over "gpon.org" reads
+   as two broken links rather than one. */
+.footer-nav a.is-external { white-space: nowrap; }
+.footer-nav a.is-external::after {
+  content: "↗";
+  margin-left: 5px;
+  font-size: 12px;
+  opacity: .55;
+}
+.footer-nav a.is-external:hover::after { opacity: 1; }
 
 .footer-sponsor h4 {
   font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
