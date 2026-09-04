@@ -271,9 +271,21 @@
                      esc(v.website.replace(/^https?:\/\//, '')) + '</a>';
         }
 
-        return '<article class="supplier">' +
-                 '<h4>' + esc(v.name) + '</h4>' +
+        var isMsp = v.tier === 'msp';
+
+        var commitments = (v.commitments && v.commitments.length)
+          ? '<ul class="supplier-commitments">' + v.commitments.map(function (c) {
+              return '<li>' + esc(c) + '</li>';
+            }).join('') + '</ul>'
+          : '';
+
+        return '<article class="supplier' + (isMsp ? ' is-msp' : '') + '">' +
+                 '<div class="supplier-top">' +
+                   '<h4>' + esc(v.name) + '</h4>' +
+                   (isMsp ? '<span class="supplier-tier">Managed IT &middot; MSP</span>' : '') +
+                 '</div>' +
                  '<p class="supplier-role">' + esc(v.role) + '</p>' +
+                 commitments +
                  (contact ? '<div class="supplier-contact">' + contact + '</div>' : '') +
                '</article>';
       }).join('');

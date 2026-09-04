@@ -5,19 +5,49 @@
     "vendors": [
       {
         "name": "CureComp Technology",
-        "role": "Official NIJIKA firmware, reseller, system network integrator",
+        "role": "NIJIKA firmware backer, reseller, system network integrator",
+        "tier": "msp",
+        "commitments": [
+          "Deploys end to end, fibre to the access point",
+          "100% customer procurement — the kit is yours, not leased",
+          "Privacy respecting: no vendor lock-in, no data siphoned off"
+        ],
         "website": "https://curecomp.my",
         "contact": null
       },
       {
         "name": "Perfect Network",
         "role": "ISP, datacentre, system network integrator",
+        "tier": "msp",
+        "commitments": [
+          "Deploys end to end, fibre to the access point",
+          "100% customer procurement — the kit is yours, not leased",
+          "Privacy respecting: no vendor lock-in, no data siphoned off"
+        ],
         "website": "https://perfect.my",
         "contact": null
       },
       {
+        "name": "EG Sphere Enterprise",
+        "role": "ISP, datacentre, System network integrator",
+        "tier": "msp",
+        "commitments": [
+          "Deploys end to end, fibre to the access point",
+          "100% customer procurement — the kit is yours, not leased",
+          "Privacy respecting: no vendor lock-in, no data siphoned off"
+        ],
+        "website": "https://egsphere.my",
+        "contact": null
+      },
+      {
         "name": "Solid Wave WiFi",
-        "role": "System network integrator",
+        "role": "System network integrator, Stick supply and firmware support",
+        "tier": "msp",
+        "commitments": [
+          "Deploys end to end, fibre to the access point",
+          "100% customer procurement — the kit is yours, not leased",
+          "Privacy respecting: no vendor lock-in, no data siphoned off"
+        ],
         "website": "https://solidwavewifi.com",
         "contact": null
       },
@@ -37,7 +67,11 @@
         "name": "CATCrypt",
         "role": "Stick supply and firmware support",
         "website": null,
-        "contact": { "type": "Telegram", "value": "@CATCrypt", "url": "https://t.me/CATCrypt" }
+        "contact": {
+          "type": "Telegram",
+          "value": "@CATCrypt",
+          "url": "https://t.me/CATCrypt"
+        }
       }
     ]
   },
@@ -46,10 +80,14 @@
     "code": "DO",
     "vendors": [
       {
-        "name": "\u00c1nzelox Zeravl\u00e1",
+        "name": "Ánzelox Zeravlá",
         "role": "ONT supply and firmware support",
         "website": null,
-        "contact": { "type": "Telegram", "value": "@Zeravla", "url": "https://t.me/Zeravla" }
+        "contact": {
+          "type": "Telegram",
+          "value": "@Zeravla",
+          "url": "https://t.me/Zeravla"
+        }
       }
     ]
   },
@@ -57,11 +95,31 @@
     "country": "Turkey",
     "code": "TR",
     "vendors": [
+	  {
+        "name": "KYTECHNGAMING",
+        "role": "Stick supply and firmware support",
+		"tier": "msp",
+        "commitments": [
+          "Deploys end to end, fibre to the access point",
+          "100% customer procurement — the kit is yours, not leased",
+          "Privacy respecting: no vendor lock-in, no data siphoned off"
+        ],
+        "website": null,
+        "contact": {
+          "type": "Telegram",
+          "value": "@KYTECHNGAMING",
+          "url": "https://t.me/KYTECHNGAMING"
+        }
+      },
       {
         "name": "Murat",
         "role": "Stick supply and firmware support",
         "website": null,
-        "contact": { "type": "Telegram", "value": "@mrt4161171", "url": "https://t.me/mrt4161171" }
+        "contact": {
+          "type": "Telegram",
+          "value": "@mrt4161171",
+          "url": "https://t.me/mrt4161171"
+        }
       }
     ]
   }

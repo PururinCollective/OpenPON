@@ -45,7 +45,10 @@ Notes:
 * `people.json` — `github` and `community` are optional. A `roles` entry containing "Lead"
   gets a highlighted tag.
 * `companies.json` — `asn` and `website` are optional.
-* `suppliers.json` — `contact` is optional: `{ "type", "value", "url" }`.
+* `suppliers.json` — `contact` is optional: `{ "type", "value", "url" }`. Set
+  `"tier": "msp"` on a full-service managed provider: it earns the *Managed IT · MSP*
+  badge, sorts above the supply-only listings in its region, and renders its
+  `commitments` array as a checked list. Leave both off for a stick supplier.
 
 The page reads these over `fetch`, so it **must be served over HTTP**. Opening `index.html`
 straight off the disk shows a load error in every section.

@@ -5,7 +5,7 @@
     "domain": "curecomp.my",
     "country": "Malaysia",
     "asn": null,
-    "role": "Official NIJIKA firmware partner, reseller & system network integrator"
+    "role": "System network integrator, reseller, datacentre & NIJIKA Firmware Backers"
   },
   {
     "name": "Perfect Network",
@@ -16,12 +16,20 @@
     "role": "Internet service provider, datacentre & system network integrator"
   },
   {
+    "name": "Telekom Malaysia",
+    "website": "https://www.tm.com.my",
+    "domain": "tm.com.my",
+    "country": "Malaysia",
+    "asn": "AS4788",
+    "role": "Internet service provider, datacentre, IP transit, IX"
+  },
+  {
     "name": "Origin TechLab",
-    "website": null,
-    "domain": null,
+    "website": "https://www.originwifi.com.my/",
+    "domain": "originwifi.com.my",
     "country": "Malaysia",
     "asn": "AS153334",
-    "role": "Network operator & engineering support"
+    "role": "ISP, Network operator & engineering support"
   },
   {
     "name": "IP Core",
@@ -29,13 +37,45 @@
     "domain": "ipcore.com.my",
     "country": "Malaysia",
     "asn": "AS132890",
-    "role": "Network operator & transit provider"
+    "role": "ISP, Network operator & transit provider"
   },
   {
     "name": "Solid Wave WiFi",
     "website": "https://solidwavewifi.com/",
     "domain": "solidwavewifi.com",
     "country": "Malaysia",
+    "asn": null,
+    "role": "ISP, System network integrator"
+  },
+  {
+    "name": "EG Sphere Enterprise",
+    "website": "https://egsphere.my",
+    "domain": "egsphere.my",
+    "country": "Malaysia",
+    "asn": null,
+    "role": "System network integrator & engineering support"
+  },
+  {
+    "name": "Beltelecom",
+    "website": "https://beltelecom.by/en",
+    "domain": "beltelecom.by",
+    "country": "Belarus",
+    "asn": "AS6697",
+    "role": "Internet service provider, datacentre, IP transit, IX"
+  },
+  {
+    "name": "Turk Telekom",
+    "website": "https://www.turktelekom.com.tr",
+    "domain": "turktelekom.com.tr",
+    "country": "Turkiye",
+    "asn": "AS9121",
+    "role": "Internet service provider, datacentre, IP transit, IX"
+  },
+  {
+    "name": "Yerebakan Yapı Üretim Ltd. Şti.",
+    "website": "https://kytechngaming.com/",
+    "domain": "kytechngaming.com",
+    "country": "Turkiye",
     "asn": null,
     "role": "System network integrator"
   },
