@@ -80,6 +80,18 @@
     "code": "TR",
     "vendors": [
 	  {
+        "name": "Murat",
+        "role": "System network integrator, Stick supply and firmware support",
+		"tier": "msp",
+        "commitments": [],
+        "website": null,
+        "contact": {
+          "type": "Telegram",
+          "value": "@mrt4161171",
+          "url": "https://t.me/mrt4161171"
+        }
+      },
+	  {
         "name": "KYTECHNGAMING",
         "role": "System network integrator, Stick supply and firmware support",
 		"tier": "msp",
@@ -89,16 +101,6 @@
           "type": "Telegram",
           "value": "@KYTECHNGAMING",
           "url": "https://t.me/KYTECHNGAMING"
-        }
-      },
-      {
-        "name": "Murat",
-        "role": "Stick supply and firmware support",
-        "website": null,
-        "contact": {
-          "type": "Telegram",
-          "value": "@mrt4161171",
-          "url": "https://t.me/mrt4161171"
         }
       }
     ]
