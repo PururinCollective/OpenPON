@@ -7,11 +7,7 @@
         "name": "CureComp Technology",
         "role": "NIJIKA firmware backer, reseller, system network integrator",
         "tier": "msp",
-        "commitments": [
-          "Deploys end to end, fibre to the access point",
-          "100% customer procurement — the kit is yours, not leased",
-          "Privacy respecting: no vendor lock-in, no data siphoned off"
-        ],
+        "commitments": [],
         "website": "https://curecomp.my",
         "contact": null
       },
@@ -19,11 +15,7 @@
         "name": "Perfect Network",
         "role": "ISP, datacentre, system network integrator",
         "tier": "msp",
-        "commitments": [
-          "Deploys end to end, fibre to the access point",
-          "100% customer procurement — the kit is yours, not leased",
-          "Privacy respecting: no vendor lock-in, no data siphoned off"
-        ],
+        "commitments": [],
         "website": "https://perfect.my",
         "contact": null
       },
@@ -31,11 +23,7 @@
         "name": "EG Sphere Enterprise",
         "role": "ISP, datacentre, System network integrator",
         "tier": "msp",
-        "commitments": [
-          "Deploys end to end, fibre to the access point",
-          "100% customer procurement — the kit is yours, not leased",
-          "Privacy respecting: no vendor lock-in, no data siphoned off"
-        ],
+        "commitments": [],
         "website": "https://egsphere.my",
         "contact": null
       },
@@ -43,11 +31,7 @@
         "name": "Solid Wave WiFi",
         "role": "System network integrator, Stick supply and firmware support",
         "tier": "msp",
-        "commitments": [
-          "Deploys end to end, fibre to the access point",
-          "100% customer procurement — the kit is yours, not leased",
-          "Privacy respecting: no vendor lock-in, no data siphoned off"
-        ],
+        "commitments": [],
         "website": "https://solidwavewifi.com",
         "contact": null
       },
@@ -97,13 +81,9 @@
     "vendors": [
 	  {
         "name": "KYTECHNGAMING",
-        "role": "Stick supply and firmware support",
+        "role": "System network integrator, Stick supply and firmware support",
 		"tier": "msp",
-        "commitments": [
-          "Deploys end to end, fibre to the access point",
-          "100% customer procurement — the kit is yours, not leased",
-          "Privacy respecting: no vendor lock-in, no data siphoned off"
-        ],
+        "commitments": [],
         "website": null,
         "contact": {
           "type": "Telegram",
