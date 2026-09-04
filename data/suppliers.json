@@ -38,6 +38,8 @@
       {
         "name": "SUBTel",
         "role": "Fibre and optical equipment supply",
+		"tier": "msp",
+        "commitments": [],
         "website": null,
         "contact": null
       }
@@ -50,6 +52,8 @@
       {
         "name": "CATCrypt",
         "role": "Stick supply and firmware support",
+		"tier": "community",
+        "commitments": [],
         "website": null,
         "contact": {
           "type": "Telegram",
@@ -66,6 +70,8 @@
       {
         "name": "Ánzelox Zeravlá",
         "role": "ONT supply and firmware support",
+		"tier": "community",
+        "commitments": [],
         "website": null,
         "contact": {
           "type": "Telegram",
@@ -81,8 +87,8 @@
     "vendors": [
 	  {
         "name": "Murat",
-        "role": "System network integrator, Stick supply and firmware support",
-		"tier": "msp",
+        "role": "Stick supply and firmware support",
+		"tier": "trade",
         "commitments": [],
         "website": null,
         "contact": {
@@ -93,8 +99,8 @@
       },
 	  {
         "name": "KYTECHNGAMING",
-        "role": "System network integrator, Stick supply and firmware support",
-		"tier": "msp",
+        "role": "Stick supply and firmware support",
+		"tier": "trade",
         "commitments": [],
         "website": null,
         "contact": {

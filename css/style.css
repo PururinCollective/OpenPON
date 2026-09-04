@@ -870,7 +870,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-bottom: 1px solid var(--border);
   display: flex; flex-direction: column; gap: 8px;
 }
-.supplier-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+/* Badge always on its own line under the name. Left to flex-wrap it sat inline after a
+   short name like "Murat" and dropped below a long one like "EG Sphere Enterprise",
+   so the cards did not line up with each other. */
+.supplier-top {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
 .supplier h4 { font-size: 16px; }
 .supplier-role { font-size: 14.5px; color: var(--text-2); }
 
@@ -885,11 +892,52 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
   white-space: nowrap;
   padding: 4px 9px; border-radius: 999px;
+}
+/* Turnkey: the recommended path, so it carries the brand accent. */
+.supplier-tier.tier-msp {
   color: var(--brand-600);
   background: color-mix(in srgb, var(--brand-500) 11%, transparent);
   border: 1px solid color-mix(in srgb, var(--brand-500) 26%, transparent);
 }
-@media (prefers-color-scheme: dark) { .supplier-tier { color: var(--brand-300); } }
+/* A business you buy hardware from. */
+.supplier-tier.tier-trade {
+  color: var(--blue-600);
+  background: color-mix(in srgb, var(--blue-600) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--blue-600) 26%, transparent);
+}
+/* An individual, not a company - deliberately neutral rather than a warning colour.
+   It sets expectations about invoices and response times, it is not a caution. */
+.supplier-tier.tier-community {
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+}
+@media (prefers-color-scheme: dark) {
+  .supplier-tier.tier-msp   { color: var(--brand-300); }
+  .supplier-tier.tier-trade { color: var(--blue-300); }
+}
+
+/* Legend above the regions, so the badges explain themselves. */
+/* One grid across all three rows, with the rows dissolved into it, so the badge column
+   sizes to the widest badge and every description still starts at the same x. A fixed
+   column width would align them too, but only until a platform's font ran wider than the
+   guess and a badge collided with its text. */
+.supplier-legend {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 12px 14px;
+  align-items: baseline;
+  margin: 0 0 30px;
+  max-width: 82ch;
+  font-size: 14.5px; color: var(--text-2);
+}
+.supplier-legend li { display: contents; }
+.supplier-legend .supplier-tier { justify-self: start; }
+
+@media (max-width: 640px) {
+  .supplier-legend { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .supplier-legend li { display: grid; gap: 6px; margin-bottom: 16px; }
+}
 
 .supplier-commitments { display: grid; gap: 7px; margin-top: 2px; }
 .supplier-commitments li {

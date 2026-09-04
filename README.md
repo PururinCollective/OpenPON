@@ -45,10 +45,24 @@ Notes:
 * `people.json` — `github` and `community` are optional. A `roles` entry containing "Lead"
   gets a highlighted tag.
 * `companies.json` — `asn` and `website` are optional.
-* `suppliers.json` — `contact` is optional: `{ "type", "value", "url" }`. Set
-  `"tier": "msp"` on a full-service managed provider: it earns the *Managed IT · MSP*
-  badge, sorts above the supply-only listings in its region, and renders its
-  `commitments` array as a checked list. Leave both off for a stick supplier.
+* `suppliers.json` — `contact` is optional: `{ "type", "value", "url" }`. `tier` sets the
+  badge and the order within a region, and takes one of three values:
+
+  | `tier`        | Badge                | Means                                                  |
+  | ------------- | -------------------- | ------------------------------------------------------ |
+  | `"msp"`       | Managed IT · MSP     | Takes the deployment end to end, procurement in the customer's name |
+  | `"trade"`     | Trade supply         | A business selling hardware, deployment left to the buyer |
+  | `"community"` | Community supply     | An individual supplying sticks and firmware help, voluntarily |
+
+  Vendors sort `msp` → `trade` → `community` → untiered, so the turnkey options lead. The
+  sort happens in `main.js`, not the file, so `suppliers.json` can stay in whatever order
+  reads best — within a tier the authored order is preserved. Omit `tier` and the vendor
+  renders as a plain card with no badge. An unrecognised value logs a `console.warn`
+  naming the vendor, rather than silently dropping the badge. The optional `commitments`
+  array renders as a checked list on any tier.
+
+  The badge legend is hand-written in `index.html` above the regions; add a tier and it
+  needs a legend row too.
 
 The page reads these over `fetch`, so it **must be served over HTTP**. Opening `index.html`
 straight off the disk shows a load error in every section.

@@ -46,7 +46,7 @@
 <meta name="twitter:image" content="https://openpon.org/assets/og-cover.png">
 <meta name="twitter:image:alt" content="Open PON Foundation — opening the future of network connectivity">
 
-<link rel="stylesheet" href="css/style.css?commit=68b6be1">
+<link rel="stylesheet" href="css/style.css?commit=c7edd62">
 
 <!-- ===================== Structured data ========================== -->
 <script type="application/ld+json">
@@ -597,12 +597,27 @@
         <h2>Where to source a stick, and who can deploy it</h2>
         <p class="section-lede">
           Regional suppliers and resellers who understand the local operator landscape. Engaging a
-          professional integrator is strongly preferred over self-deployment. Those marked
-          <strong>Managed IT &middot; MSP</strong> take the whole deployment end to end &mdash; fibre,
-          ONT, routing and access points &mdash; with every piece procured in the customer&rsquo;s own
-          name, so the network stays theirs to keep.
+          professional integrator is strongly preferred over self-deployment.
         </p>
       </header>
+      <ul class="supplier-legend">
+        <li>
+          <span class="supplier-tier tier-msp">Managed IT &middot; MSP</span>
+          <span>Takes the deployment end to end &mdash; fibre, ONT, routing and access points
+          &mdash; with every piece procured in your own name.</span>
+        </li>
+        <li>
+          <span class="supplier-tier tier-trade">Trade supply</span>
+          <span>A business you buy hardware from, deployment left to you or your own
+          integrator.</span>
+        </li>
+        <li>
+          <span class="supplier-tier tier-community">Community supply</span>
+          <span>An individual who supplies sticks and helps with firmware. Their time is given
+          voluntarily, so treat it as a favour rather than a support contract.</span>
+        </li>
+      </ul>
+
       <div class="supplier-regions" id="supplierRegions" data-loading>
         <p class="loading">Loading suppliers&hellip;</p>
       </div>
@@ -727,6 +742,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?commit=68b6be1"></script>
+<script src="js/main.js?commit=c7edd62"></script>
 </body>
 </html>

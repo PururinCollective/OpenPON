@@ -41,6 +41,15 @@
     '0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 ' +
     '0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
 
+  /* Supplier tiers: how much of the job a listing will take on. Rank drives the order
+     within a region, so the turnkey options come first. A vendor with no tier renders as a
+     plain card and sorts last. */
+  var SUPPLIER_TIERS = {
+    msp:       { label: 'Managed IT &middot; MSP', rank: 0 },
+    trade:     { label: 'Trade supply',            rank: 1 },
+    community: { label: 'Community supply',        rank: 2 }
+  };
+
   /* Initials used for the contributor avatars. */
   function initials(name) {
     var clean = String(name).trim();
@@ -257,7 +266,16 @@
 
   function renderSuppliers(list, el) {
     el.innerHTML = list.map(function (region) {
-      var vendors = region.vendors.map(function (v) {
+      /* Sorted here rather than in the JSON so the file can stay in whatever order reads
+         best while the page still leads with the turnkey listings. Array.sort is stable,
+         so the authored order survives within a tier. */
+      var ordered = region.vendors.slice().sort(function (a, b) {
+        var ra = (SUPPLIER_TIERS[a.tier] || {}).rank;
+        var rb = (SUPPLIER_TIERS[b.tier] || {}).rank;
+        return (ra === undefined ? 99 : ra) - (rb === undefined ? 99 : rb);
+      });
+
+      var vendors = ordered.map(function (v) {
         var contact = '';
         if (v.contact) {
           var value = v.contact.url
@@ -271,7 +289,16 @@
                      esc(v.website.replace(/^https?:\/\//, '')) + '</a>';
         }
 
-        var isMsp = v.tier === 'msp';
+        var tier = v.tier ? SUPPLIER_TIERS[v.tier] : null;
+        if (v.tier && !tier) {
+          /* Loud, because the old strict check swallowed a bad value in silence. */
+          console.warn('[openpon] unknown supplier tier "' + v.tier + '" on "' + v.name +
+                       '" - expected one of: ' + Object.keys(SUPPLIER_TIERS).join(', '));
+        }
+
+        var badge = tier
+          ? '<span class="supplier-tier tier-' + esc(v.tier) + '">' + tier.label + '</span>'
+          : '';
 
         var commitments = (v.commitments && v.commitments.length)
           ? '<ul class="supplier-commitments">' + v.commitments.map(function (c) {
@@ -279,10 +306,10 @@
             }).join('') + '</ul>'
           : '';
 
-        return '<article class="supplier' + (isMsp ? ' is-msp' : '') + '">' +
+        return '<article class="supplier' + (tier ? ' is-' + esc(v.tier) : '') + '">' +
                  '<div class="supplier-top">' +
                    '<h4>' + esc(v.name) + '</h4>' +
-                   (isMsp ? '<span class="supplier-tier">Managed IT &middot; MSP</span>' : '') +
+                   badge +
                  '</div>' +
                  '<p class="supplier-role">' + esc(v.role) + '</p>' +
                  commitments +
