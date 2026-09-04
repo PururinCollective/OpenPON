@@ -36,7 +36,7 @@
     "name": "\u00c1nzelox Zeravl\u00e1",
     "country": "Dominican Republic",
     "code": "DO",
-    "github": null,
+    "github": "https://github.com/SkateWarp",
     "focus": "RTL9602 reverse engineering, ZRV OS developer",
     "roles": ["Lead", "Reverse engineering", "Firmware"]
   },
