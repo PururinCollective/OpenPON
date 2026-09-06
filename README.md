@@ -74,49 +74,98 @@ python -m http.server 8000 --bind 0.0.0.0
 ```
 
 Then <http://localhost:8000/>, or `http://<your-lan-ip>:8000/` from another device on the
-network. Browsers cache `style.css` hard — use **Ctrl+F5** after editing CSS.
+network. Browsers cache `style.css` hard — use **Ctrl+F5** after editing CSS. JSON edits
+need no such thing on localhost; see [Cache busting](#cache-busting).
 
 ## Cache busting
 
-Every CSS, JS and JSON request carries the git commit it was released at:
+Every CSS, JS and JSON request carries a release version:
 
 ```
-css/style.css?commit=939577f
-js/main.js?commit=939577f
-data/companies.json?commit=939577f
+css/style.css?v=2026.09.06.1
+js/main.js?v=2026.09.06.1
+data/companies.json?v=2026.09.06.1
 ```
 
-Browsers treat a changed query string as a different file, so a release is picked up
-immediately instead of sitting behind a stale cache — the reason a plain CSS edit can take a
-hard refresh to appear.
+The version lives in one place, `index.html`:
 
-Stamp before uploading:
+```html
+<meta name="version" content="2026.09.06.1">
+```
+
+`main.js` reads it from there and appends the same `?v=` to every `data/` request, so the
+JSON is covered without being listed anywhere. Format is `YYYY.MM.DD.N`, where `N` restarts
+at 1 each day and increments on same-day re-releases.
+
+Bump and stamp in one step, then commit:
 
 ```bash
-python tools/stamp-commit.py
+python tools/stamp-version.py
 ```
 
-That rewrites only the two references in `index.html`. The JSON files are not listed in the
-script and do not need to be: `main.js` reads the stamp off its own `<script src>` and
-appends it to every `data/` request, so one rewrite covers all seven files. Add another
-stylesheet or script to `index.html` and it gets picked up automatically.
+| Command                                    | Effect                                    |
+| ------------------------------------------ | ----------------------------------------- |
+| `python tools/stamp-version.py`            | bump the version and stamp                |
+| `python tools/stamp-version.py --restamp`  | re-apply the current version, no bump     |
+| `python tools/stamp-version.py --set X`    | set an explicit version                   |
+| `python tools/stamp-version.py --check`    | report what is stamped, change nothing    |
+| `python tools/stamp-version.py --clear`    | strip `?v=` off css/js for local CSS work |
 
-| Command                                | Effect                                  |
-| -------------------------------------- | --------------------------------------- |
-| `python tools/stamp-commit.py`         | stamp with the current short `HEAD`     |
-| `python tools/stamp-commit.py --check` | list what is stamped, change nothing    |
-| `python tools/stamp-commit.py --clear` | strip the stamps back off               |
+**Why not the git commit hash.** The old script read `git rev-parse HEAD`, which can only
+ever name the commit *before* the one you are making — so stamping and committing took two
+commits to line up, and the stamp drifted whenever that second step was skipped. A version
+you own is part of the same commit as the change it describes. One commit, always accurate.
 
-Re-running is safe — an existing stamp is replaced, not appended to.
+`--clear` leaves the meta tag alone, so `--restamp` puts the stamps back without a bump.
 
-With no stamp present, `main.js` falls back to `cache: 'no-cache'` on the JSON so edits still
-show up during local development. The stamp is what makes those files safe to cache hard.
+### Local development
 
-The stamp is `HEAD` at the moment you run the script, so stamping and then committing leaves
-the page naming the previous commit. That is harmless — the value only has to *change* when
-the content does — but to keep them aligned, stamp after committing and amend.
+`main.js` skips the version entirely on `localhost`, `127.0.0.1` and `file:`, falling back to
+`cache: no-cache` on the JSON. Editing `data/*.json` locally works without bumping anything.
 
-`tools/` is not part of the site and does not need uploading.
+Two things that follow from that:
+
+* **CSS and JS are still stamped locally**, because those URLs are written into the HTML and
+  cannot be made conditional. After a stylesheet edit, use **Ctrl+F5**, or run `--clear` while
+  you work and `--restamp` when you are done.
+* **LAN preview behaves like production.** Reaching the dev server on `192.168.x.x` from a
+  phone takes the stamped path, so bump or `--clear` before testing data changes that way.
+
+## Cloudflare
+
+A version in the URL only helps if the cache key includes it, and if the HTML naming that
+version is not itself stale. Both are Cloudflare settings, not something the site can fix on
+its own.
+
+**1. Do not cache `index.html`.** This is the one that breaks everything else. If the HTML is
+held at the edge, visitors keep getting the old `<meta name="version">` and the old
+`?v=` — so they keep getting the old CSS, JS and JSON no matter how many times you bump.
+Serve it with `Cache-Control: no-cache` so it revalidates on every request.
+
+**2. Check the cache level is Standard, not "Ignore Query String".** Standard makes the query
+string part of the cache key, which is what makes `?v=` work. A Page Rule or Cache Rule set to
+*Ignore Query String* strips it, and every version collapses onto the same cached object —
+the most likely reason a JSON file stays stale after a bump.
+
+**3. `.json` is not cached by Cloudflare by default.** It is not in the default static
+extension list, so if JSON is being cached at all, a *Cache Everything* rule is putting it
+there. That is fine and desirable with versioned URLs — just make sure rule 1 excludes the
+HTML from it.
+
+Suggested origin headers:
+
+| Path                       | `Cache-Control`                          |
+| -------------------------- | ---------------------------------------- |
+| `/index.html`, `/`         | `no-cache`                               |
+| `/css/`, `/js/`, `/data/`  | `public, max-age=31536000, immutable`    |
+| `/robots.txt`, `/sitemap.xml` | `public, max-age=3600`                |
+
+Those are safe *because* the URLs are versioned: a bump produces a new URL, so nothing has to
+expire. Also check **Browser Cache TTL** in the Cloudflare dashboard — if it is set to a
+fixed value it overrides the origin header on its way to the browser.
+
+Purge the cache after a deploy while settings are being sorted out. Once rule 1 is in place it
+stops being necessary, which is a good way to confirm it is working.
 
 ## Hero mesh animation
 
@@ -191,7 +240,7 @@ tools also force a re-scrape after you change the tags:
 
 ## Deploying
 
-Run `python tools/stamp-commit.py`, then upload `index.html`, `robots.txt`, `sitemap.xml`,
+Run `python tools/stamp-version.py`, then upload `index.html`, `robots.txt`, `sitemap.xml`,
 `css/`, `js/`, `data/` and `assets/` to the web root. Any static host will do. `data/` must
 sit alongside `index.html` and stay publicly readable, or the page renders empty.
 

@@ -16,18 +16,29 @@
       .replace(/'/g, '&#39;');
   };
 
-  /* Cache-busting stamp, read from this script's own ?commit= in index.html. Taking it
-     from there means the JSON requests inherit whatever the page was stamped with, so a
-     release only has to rewrite index.html - not every data URL in here. */
-  var COMMIT = (function () {
+  /* Release version, stamped into index.html by tools/stamp-version.py. Read from the
+     meta tag so the data/*.json requests carry it too - those URLs are built down in
+     loadJSON, they are not written in the HTML, and a CDN will happily cache them. */
+  var VERSION = (function () {
+    var meta = document.querySelector('meta[name="version"]');
+    if (meta && meta.content) return meta.content;
+
+    /* Fallback: our own ?v=, for a page that lost the meta tag. */
     var el = document.currentScript;
     if (!el) {
       var all = document.getElementsByTagName('script');
       el = all[all.length - 1];
     }
-    var match = el && el.src && el.src.match(/[?&]commit=([^&]*)/);
+    var match = el && el.src && el.src.match(/[?&]v=([^&]*)/);
     return match ? match[1] : '';
   })();
+
+  /* Served off a dev machine: never stamp, always revalidate. Otherwise editing a JSON
+     file without bumping the version leaves the browser serving the copy it already has,
+     which looks exactly like the edit not working. LAN addresses are deliberately not
+     included - previewing over the LAN behaves like production. */
+  var IS_DEV = location.protocol === 'file:' ||
+               /^(localhost|127\.0\.0\.1|\[::1\]|::1)$/.test(location.hostname);
 
   var $  = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) {
@@ -72,10 +83,11 @@
   }
 
   function loadJSON(file) {
-    /* The stamp is what makes these safe to cache hard; without one, fall back to
-       revalidating so an edit still shows up during local development. */
-    var url = 'data/' + file + (COMMIT ? '?commit=' + encodeURIComponent(COMMIT) : '');
-    var opts = COMMIT ? undefined : { cache: 'no-cache' };
+    /* The version is what makes these safe for a CDN to hold on to. Without one, ask for
+       a revalidation instead so a local edit is not hidden behind a stale copy. */
+    var stamp = (!IS_DEV && VERSION) ? '?v=' + encodeURIComponent(VERSION) : '';
+    var url = 'data/' + file + stamp;
+    var opts = stamp ? undefined : { cache: 'no-cache' };
 
     return fetch(url, opts).then(function (res) {
       if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
