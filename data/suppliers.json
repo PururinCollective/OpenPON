@@ -110,5 +110,23 @@
         }
       }
     ]
+  },
+  {
+    "country": "Vietnam",
+    "code": "VN",
+    "vendors": [
+      {
+        "name": "Vuducdong",
+        "role": "System network integrator, Stick supply and firmware support",
+		"tier": "msp",
+        "commitments": [],
+        "website": null,
+        "contact": {
+          "type": "Telegram",
+          "value": "@vuducdong",
+          "url": "https://t.me/vuducdong"
+        }
+      }
+    ]
   }
 ]
