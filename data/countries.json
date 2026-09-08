@@ -3,7 +3,7 @@
   { "name": "Indonesia",    "code": "ID", "region": "Asia Pacific",  "operators": ["IndiHome", "Biznet", "et al."] },
   { "name": "Japan",        "code": "JP", "region": "Asia Pacific",  "operators": ["NTT Hikari"] },
   { "name": "China",        "code": "CN", "region": "Asia Pacific",  "operators": [] },
-  { "name": "Vietnam",      "code": "VN", "region": "Asia Pacific",  "operators": [] },
+  { "name": "Vietnam",      "code": "VN", "region": "Asia Pacific",  "operators": ["VNPT", "Viettel", "FPT"] },
   { "name": "Taiwan",       "code": "TW", "region": "Asia Pacific",  "operators": ["Hinet"] },
   { "name": "UAE",          "code": "AE", "region": "Middle East",   "operators": [] },
   { "name": "Jordan",       "code": "JO", "region": "Middle East",   "operators": [] },
