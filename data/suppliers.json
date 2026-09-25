@@ -36,11 +36,11 @@
         "contact": null
       },
       {
-        "name": "SUBTel",
+        "name": "SUBTel (MY)",
         "role": "Fibre and optical equipment supply",
 		"tier": "msp",
         "commitments": [],
-        "website": null,
+        "website": "https://www.sublimetele.com/",
         "contact": null
       }
     ]

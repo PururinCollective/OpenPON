@@ -56,6 +56,14 @@
     "role": "System network integrator & engineering support"
   },
   {
+    "name": "SUBTel",
+    "website": "https://www.sublimetele.com/",
+    "domain": "sublimetele.com",
+    "country": "International",
+    "asn": null,
+    "role": "Department of Telecommunications, Fibre infrastructure & optical equipment supply"
+  }
+  {
     "name": "Beltelecom",
     "website": "https://beltelecom.by/en",
     "domain": "beltelecom.by",
@@ -78,13 +86,5 @@
     "country": "Turkiye",
     "asn": null,
     "role": "System network integrator"
-  },
-  {
-    "name": "SUBTel",
-    "website": null,
-    "domain": null,
-    "country": "International",
-    "asn": null,
-    "role": "Department of Telecommunications, Fibre infrastructure & optical equipment supply"
   }
 ]
