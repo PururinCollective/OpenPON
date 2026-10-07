@@ -108,7 +108,19 @@
           "value": "@KYTECHNGAMING",
           "url": "https://t.me/KYTECHNGAMING"
         }
-      }
+      },
+		{
+			"name": "Tersine Bilgisayarcı",
+			"role": "Stick Supply , firmware support and network integration",
+			"tier": "trade",
+			"commitments": [],
+			"website": null,
+			"contact": {
+				"type": "Telegram" ,
+				"value": "@Marinkitawagaa",
+				"url": "https://t.me/Marinkitawagaa"
+			}
+		}
     ]
   },
   {
