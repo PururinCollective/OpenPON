@@ -23,6 +23,12 @@
     "notes": "MediaTek Filogic 880 board with two SFP+ cages, running OpenWrt. An open stick in an OpenWrt host makes the whole path from the fibre to the LAN open source, with no vendor firmware left in it."
   },
   {
+    "vendor": "Keenetic / Netcraze",
+    "compatibility": "Supported",
+    "level": "good",
+    "notes": "The Hero KN-1013 is the pick. It is sold as the Netcraze Giga NC-1013 in Russia and the EAEU, and has a 10G SFP+ cage beside five 2.5G ports, though the cage runs at 2.5 Gbps when used as WAN. Keenetic's own list includes GPON sticks at 2.5G, and older Giga and Ultra models also have an SFP cage. Verified and supplied locally in Turkey by KYTECHNGAMING."
+  },
+  {
     "vendor": "TP-Link",
     "compatibility": "Supported",
     "level": "good",
