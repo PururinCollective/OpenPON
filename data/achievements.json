@@ -1,0 +1,91 @@
+{
+  "highlights": [
+    {
+      "title": "True 2 Gbps on TM Unifi",
+      "country": "Malaysia",
+      "code": "MY",
+      "summary": "A single 2 Gbps path through one GPON stick on TM Unifi, measured on a MikroTik router.",
+      "milestones": [
+        {
+          "date": "August 2022",
+          "text": "Four 800 Mbps PPPoE accounts ran through one GPON stick, before Unifi offered a 2 Gbps plan.",
+          "url": "https://forum.lowyat.net/index.php?showtopic=4925452&st=500&p=105123186&#entry105123186",
+          "link": "Lowyat.NET post"
+        },
+        {
+          "date": "Plan launch",
+          "text": "Unifi launched its 2 Gbps plan as 1+1. A single-stick configuration for true 2 Gbps was working on launch day."
+        }
+      ],
+      "links": [
+        {
+          "label": "Lowyat.NET thread: Ditch ONU, use GPON SFP on Business Grade Router",
+          "url": "https://forum.lowyat.net/index.php?showtopic=4925452"
+        }
+      ],
+      "image": {
+        "src": "assets/unifi-2gbps.png",
+        "width": 1077,
+        "height": 527,
+        "alt": "A MikroTik interface window showing 2.1 Gbps received on bridge1-vlan500, beside an Ookla Speedtest run against a Telekom Malaysia server reading 1945 Mbps download.",
+        "caption": "MikroTik bridge1-vlan500 receiving 2.1 Gbps on TM Unifi. Speedtest: 1,945 Mbps down."
+      }
+    }
+  ],
+  "source": {
+    "label": "RTL960x: Success Story",
+    "url": "https://github.com/Anime4000/RTL960x#success-story"
+  },
+  "stories": [
+    {
+      "title": "@stich86: 2.5GbE internet",
+      "url": "https://github.com/Anime4000/RTL960x/issues/17#issuecomment-1101435506",
+      "site": "GitHub"
+    },
+    {
+      "title": "My journey connecting fiber internet to my router",
+      "url": "https://www.reddit.com/r/HomeNetworking/comments/vd0qm2/my_journey_connecting_fiber_internet_to_my_router/",
+      "site": "Reddit"
+    },
+    {
+      "title": "HiNet users in Taiwan",
+      "url": "https://github.com/Anime4000/RTL960x/pull/44#issue-1281699738",
+      "site": "GitHub"
+    },
+    {
+      "title": "@izhamsatria: ~2.5 Gbps on TM Unifi",
+      "url": "https://forum.lowyat.net/index.php?showtopic=4925452&st=500&p=105123186&#entry105123186",
+      "site": "Lowyat.NET",
+      "note": "Before TIME announced its 2 Gbps plan in Malaysia",
+      "noteUrl": "https://www.lowyat.net/2022/286244/time-internet-2gbps-price/"
+    },
+    {
+      "title": "Orange Fiber at 2 Gbps (MikroTik CCR2004, ONT SFP+)",
+      "url": "https://lafibre.info/remplacer-livebox/guide-de-connexion-fibre-directement-sur-un-routeur-voire-meme-en-2gbps/",
+      "site": "lafibre.info",
+      "note": "In French"
+    },
+    {
+      "title": "MagtiCom fiber in Georgia",
+      "url": "https://telegra.ph/Georgia-DFP-34X-2C2-and-MagtiCom-04-23",
+      "site": "Telegraph"
+    },
+    {
+      "title": "T-Mobile Netherlands: replacing the Huawei ONT",
+      "url": "https://providerforum.nl/topics/vervangen-t-mobile-huawei-gpon.95394/page-3#post-1348257",
+      "site": "providerforum.nl",
+      "note": "English translation",
+      "noteUrl": "https://providerforum-nl.translate.goog/topics/vervangen-t-mobile-huawei-gpon.95394/page-3?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#post-1348257"
+    },
+    {
+      "title": "SilkNet fiber in Georgia",
+      "url": "https://telegra.ph/Georgia-DFP-34X-2C2-and-SilkNet-11-07",
+      "site": "Telegraph"
+    },
+    {
+      "title": "Bangladesh: Dot-Internet Dhaka",
+      "url": "https://github.com/Anime4000/RTL960x/issues/307",
+      "site": "GitHub"
+    }
+  ]
+}

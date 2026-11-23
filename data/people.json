@@ -21,7 +21,7 @@
     "code": null,
     "github": null,
     "community": "right.com.cn",
-    "focus": "Leading Lantiq GPON hacking",
+    "focus": "Lantiq GPON reverse engineering, Peter-Pon",
     "roles": ["Lead", "Firmware"]
   },
   {
@@ -41,12 +41,36 @@
     "roles": ["Lead", "Reverse engineering", "Firmware"]
   },
   {
+    "name": "Andre Ziviani",
+    "country": null,
+    "code": null,
+    "github": "https://github.com/AndreZiviani",
+    "focus": "RTL9601 OSS: Linux 6.18 with open switch, GPON and OMCI drivers for any RTL9601 stick, including ODI, Ubiquiti UF-Instant and D-Link DPN-100",
+    "roles": ["Lead", "Firmware"]
+  },
+  {
     "name": "CATCrypt",
     "country": "Belarus",
     "code": "BY",
     "github": null,
-    "focus": "Firmware development and field validation",
+    "focus": "CatOS, RTL9601 firmware for networks in Belarus",
     "roles": ["Developer", "Tester"]
+  },
+  {
+    "name": "Pedro Teixeira",
+    "country": null,
+    "code": null,
+    "github": "https://github.com/metal-stress",
+    "focus": "Peter-Pon, firmware for Lantiq Falcon GPON sticks",
+    "roles": ["Developer", "Firmware"]
+  },
+  {
+    "name": "\u0428\u0442\u0435\u0443\u0434",
+    "country": null,
+    "code": null,
+    "github": null,
+    "focus": "Peter-Pon, firmware for Lantiq Falcon GPON sticks",
+    "roles": ["Developer", "Firmware"]
   },
   {
     "name": "Rajko Stojadinovic",

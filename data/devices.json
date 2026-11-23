@@ -4,40 +4,40 @@
     "compatibility": "100%",
     "level": "full",
     "featured": true,
-    "summary": "The reference platform for Open PON testing, and the vendor that made 2.5 Gbps PON sticks practical. RouterOS carried 2.5G SFP link rates from v7.11, ahead of most of the market.",
+    "summary": "Reference host for Open PON testing. RouterOS supports 2.5G SFP link rates from v7.11.",
     "recommended": {
       "model": "RB5009",
-      "note": "the most popular host by a distance, and the one we recommend \u2014 its 10G SFP+ cage takes GPON and XGS-PON sticks alike"
+      "note": "most-used host. The 10G SFP+ cage accepts both GPON and XGS-PON sticks."
     },
     "features": [
-      "2.5 Gbps SFP link rates since RouterOS v7.11",
-      "Full SFP cage compatibility across RouterBOARD and CCR platforms",
-      "Optical DDM readings exposed directly in RouterOS, no vendor tooling needed",
-      "Every firmware we list is regression tested against it first"
+      "2.5G SFP link rate since RouterOS v7.11",
+      "SFP cage compatibility across RouterBOARD and CCR platforms",
+      "Optical DDM readings in RouterOS without vendor tools",
+      "Listed firmware is regression tested on RouterOS first"
     ]
   },
   {
     "vendor": "Banana Pi BPI-R4",
     "compatibility": "Open source",
     "level": "open",
-    "notes": "MediaTek Filogic 880 board with two SFP+ cages, running OpenWrt. An open stick in an OpenWrt host makes the whole path from the fibre to the LAN open source, with no vendor firmware left in it."
+    "notes": "MediaTek Filogic 880 board with two SFP+ cages, running OpenWrt. Host for the MediaTek track: OpenWrt on the router and open firmware on the PON stick."
   },
   {
     "vendor": "Keenetic / Netcraze",
     "compatibility": "Supported",
     "level": "good",
-    "notes": "The Hero KN-1013 is the pick. It is sold as the Netcraze Giga NC-1013 in Russia and the EAEU, and has a 10G SFP+ cage beside five 2.5G ports, though the cage runs at 2.5 Gbps when used as WAN. Keenetic's own list includes GPON sticks at 2.5G, and older Giga and Ultra models also have an SFP cage. Verified and supplied locally in Turkey by KYTECHNGAMING."
+    "notes": "Recommended model: Hero KN-1013, sold as Netcraze Giga NC-1013 in Russia and the EAEU. 10G SFP+ cage and five 2.5G ports. The cage runs at 2.5 Gbps when used as WAN. Keenetic's compatibility list includes 2.5G GPON sticks. Older Giga and Ultra models also have an SFP cage. Verified and supplied in Turkey by KYTECHNGAMING."
   },
   {
     "vendor": "TP-Link",
     "compatibility": "Supported",
     "level": "good",
-    "notes": "Works on SFP-equipped switches and routers. Behaviour varies by model and firmware revision."
+    "notes": "Works in SFP-equipped switches and routers. Behaviour varies by model and firmware revision."
   },
   {
     "vendor": "Ubiquiti",
     "compatibility": "Supported",
     "level": "good",
-    "notes": "Operates in EdgeRouter and UniFi SFP ports. Verify link negotiation per model before deployment."
+    "notes": "Works in EdgeRouter and UniFi SFP ports. Verify link negotiation per model before deployment."
   }
 ]

@@ -131,7 +131,8 @@ img, svg { max-width: 100%; display: block; }
 a { color: inherit; }
 h1, h2, h3, h4 { margin: 0; line-height: 1.18; letter-spacing: -.02em; font-weight: 700; }
 p  { margin: 0; }
-ul { margin: 0; padding: 0; list-style: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+dl, dd, figure { margin: 0; }
 
 .container {
   width: 100%;
@@ -663,6 +664,244 @@ ul { margin: 0; padding: 0; list-style: none; }
   .fw-features li::after { border-color: var(--brand-300); }
 }
 
+/* Builds of the featured firmware, one box per target, full width under the card. */
+.fw-variants {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;
+  padding-top: 26px;
+  border-top: 1px solid color-mix(in srgb, var(--brand-500) 18%, transparent);
+}
+.fw-variant {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.fw-variant-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 10px; flex-wrap: wrap;
+}
+.fw-variant h4 { font-size: 16.5px; }
+.fw-variant dl {
+  display: grid; grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 12px; font-size: 14px; line-height: 1.5;
+}
+.fw-variant dt {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); padding-top: 2px;
+}
+.fw-variant dd { color: var(--text-2); }
+
+/* ---------- Status chips ---------- */
+.status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .03em; line-height: 1.4;
+  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+}
+.status::before {
+  content: ""; flex: none;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor;
+}
+.status-stable {
+  color: #15803d;
+  background: color-mix(in srgb, #16a34a 12%, transparent);
+  border-color: color-mix(in srgb, #16a34a 28%, transparent);
+}
+.status-beta {
+  color: var(--blue-600);
+  background: color-mix(in srgb, var(--blue-600) 11%, transparent);
+  border-color: color-mix(in srgb, var(--blue-600) 26%, transparent);
+}
+.status-dev {
+  color: var(--brand-600);
+  background: color-mix(in srgb, var(--brand-500) 11%, transparent);
+  border-color: color-mix(in srgb, var(--brand-500) 26%, transparent);
+}
+.status-experimental {
+  color: var(--warn);
+  background: color-mix(in srgb, #d97706 12%, transparent);
+  border-color: color-mix(in srgb, #d97706 28%, transparent);
+}
+.status-planned { border-style: dashed; }
+@media (prefers-color-scheme: dark) {
+  .status-stable { color: #4ade80; }
+  .status-beta   { color: var(--blue-300); }
+  .status-dev    { color: var(--brand-300); }
+}
+
+/* Shared link styling for links rendered from data. */
+.link-list { display: grid; gap: 6px; font-size: 14.5px; }
+.link-list a,
+.achieve-steps a,
+.story-note[href] {
+  color: var(--brand-600); font-weight: 600; text-decoration: none;
+}
+.link-list a:hover,
+.achieve-steps a:hover,
+.story-note[href]:hover { text-decoration: underline; }
+@media (prefers-color-scheme: dark) {
+  .link-list a, .achieve-steps a, .story-note[href] { color: var(--brand-300); }
+}
+
+.news-figure img,
+.achieve-figure img {
+  width: 100%; height: auto;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+}
+.news-figure figcaption,
+.achieve-figure figcaption { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
+
+/* ---------- News ---------- */
+.news-list { display: grid; gap: 20px; }
+.news-item {
+  display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 28px;
+  padding: 30px 30px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface);
+}
+.news-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.news-date { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--text-2); }
+.news-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.news-body h3 { font-size: 20px; }
+.news-body p { font-size: 15.5px; color: var(--text-2); max-width: 80ch; }
+.news-body .news-by { font-size: 14px; color: var(--muted); }
+.news-by b { color: var(--text-2); font-weight: 650; }
+.news-figure { margin-top: 10px; }
+
+/* ---------- Platforms ---------- */
+.platform-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.platform {
+  position: relative;
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 30px 26px 26px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.platform::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
+  background: var(--grad);
+}
+.platform-head { display: flex; flex-direction: column; gap: 6px; }
+.platform-head h3 { font-size: 23px; letter-spacing: -.025em; }
+.platform-scope {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--brand-600);
+}
+@media (prefers-color-scheme: dark) { .platform-scope { color: var(--brand-300); } }
+.platform-summary { font-size: 15px; color: var(--text-2); }
+.platform-specs {
+  display: grid; gap: 2px;
+  padding-top: 14px; border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+.platform-specs dt,
+.platform-sub {
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted);
+}
+.platform-specs dt { margin-top: 8px; }
+.platform-specs dt:first-child { margin-top: 0; }
+.platform-specs dd { color: var(--text-2); }
+.platform-sub { padding-top: 14px; border-top: 1px solid var(--border); letter-spacing: .12em; }
+.platform-projects { display: grid; gap: 12px; }
+.platform-projects li { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.platform-project { display: flex; flex-direction: column; min-width: 0; line-height: 1.4; }
+.platform-project b { font-size: 15px; font-weight: 650; }
+.platform-project b a {
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--brand-500) 40%, transparent);
+}
+.platform-project b a:hover { color: var(--brand-600); border-bottom-color: currentColor; }
+@media (prefers-color-scheme: dark) { .platform-project b a:hover { color: var(--brand-300); } }
+.platform-project-note { font-size: 13.5px; color: var(--muted); }
+.platform-projects .status { margin-top: 1px; }
+
+/* ---------- Achievements ---------- */
+.achieve-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 34px; align-items: start;
+  padding: 36px 32px;
+  border: 1px solid color-mix(in srgb, var(--brand-500) 30%, transparent);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--brand-500) 7%, var(--surface)),
+    color-mix(in srgb, var(--blue-600) 6%, var(--surface)));
+}
+.achieve-main { display: flex; flex-direction: column; gap: 16px; }
+.achieve-head { display: flex; align-items: center; gap: 12px; }
+.achieve-head h3 { font-size: 24px; letter-spacing: -.025em; }
+.achieve-summary { font-size: 16.5px; color: var(--text-2); }
+.achieve-steps {
+  display: grid; gap: 14px;
+  margin-left: 5px; padding-left: 20px;
+  border-left: 2px solid var(--border-2);
+}
+.achieve-steps li { position: relative; }
+.achieve-steps li::before {
+  content: ""; position: absolute; left: -27px; top: 5px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--grad);
+  box-shadow: 0 0 0 3px var(--surface);
+}
+.achieve-date {
+  display: block; margin-bottom: 2px;
+  font-family: var(--mono); font-size: 12.5px; font-weight: 600;
+  color: var(--brand-600);
+}
+@media (prefers-color-scheme: dark) { .achieve-date { color: var(--brand-300); } }
+.achieve-steps p { font-size: 15px; color: var(--text-2); }
+
+.stories { margin-top: 48px; }
+.stories-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 8px 20px; flex-wrap: wrap;
+  padding-bottom: 12px; margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.stories-head h3 {
+  font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted);
+}
+.stories-head .inline-link { font-size: 14.5px; }
+.story-list {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px;
+  counter-reset: story;
+}
+.story-list li {
+  counter-increment: story;
+  position: relative;
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 15px 18px 15px 52px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--surface);
+  transition: border-color .2s ease;
+}
+.story-list li:hover { border-color: var(--brand-500); }
+.story-list li::before {
+  content: counter(story, decimal-leading-zero);
+  position: absolute; left: 17px; top: 16px;
+  font-family: var(--mono); font-size: 12.5px; font-weight: 700;
+  color: var(--muted);
+}
+.story-title {
+  font-size: 15px; font-weight: 650; line-height: 1.4;
+  color: var(--text); text-decoration: none;
+}
+.story-title:hover { color: var(--brand-600); }
+@media (prefers-color-scheme: dark) { .story-title:hover { color: var(--brand-300); } }
+.story-meta { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 13px; color: var(--muted); }
+.story-note[href] { font-weight: 600; }
+
+.section-foot { margin-top: 24px; font-size: 14.5px; color: var(--muted); }
+.section-foot a { color: var(--brand-600); font-weight: 600; text-decoration: none; }
+.section-foot a:hover { text-decoration: underline; }
+@media (prefers-color-scheme: dark) { .section-foot a { color: var(--brand-300); } }
+
 /* ---------- Devices ---------- */
 .device-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .device-card {
@@ -1158,9 +1397,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   .primary-nav a { padding: 8px 9px; font-size: 14px; }
 }
 
-@media (max-width: 940px) {
-  html { scroll-padding-top: 76px; }
-
+/* The nav collapses earlier than the layout: with ten links it needs about 1010px in one
+   row, and below that it wraps under the brand. */
+@media (max-width: 1040px) {
   .nav-toggle { display: flex; }
   .primary-nav {
     position: absolute; top: 100%; left: 0; right: 0;
@@ -1174,6 +1413,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   .primary-nav.is-open { display: flex; }
   .primary-nav a { padding: 12px 14px; font-size: 16px; border-radius: 10px; }
   .primary-nav .nav-cta { margin-left: 0; margin-top: 8px; text-align: center; }
+}
+
+@media (max-width: 940px) {
+  html { scroll-padding-top: 76px; }
 
   .hero { padding-top: 46px; }
   .hero-inner { grid-template-columns: 1fr; gap: 38px; }
@@ -1187,6 +1430,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .fw-card.is-featured,
   .device-card.is-featured { grid-column: span 2; grid-template-columns: 1fr; gap: 22px; padding: 30px 26px; }
+
+  .platform-grid { grid-template-columns: 1fr; }
+  .news-item { grid-template-columns: 1fr; gap: 16px; padding: 26px; }
+  .news-meta { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .achieve-feature { grid-template-columns: 1fr; gap: 26px; padding: 30px 26px; }
 
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-sponsor { grid-column: span 2; max-width: 420px; }
@@ -1215,6 +1463,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .fw-card.is-featured,
   .device-card.is-featured { grid-column: span 1; }
+  .fw-variants, .story-list { grid-template-columns: 1fr; }
+  .news-item, .platform, .achieve-feature { padding: 24px 20px; }
 
   .safety-card { padding: 30px 22px; border-radius: var(--radius); }
   .principle { padding: 22px 20px; }

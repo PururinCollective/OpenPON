@@ -1,0 +1,36 @@
+[
+  {
+    "date": "November 2026",
+    "title": "Peter-Pon: PPPoE in the Lantiq Falcon Packet Engine",
+    "platform": "Lantiq Falcon",
+    "status": "Runs on OLT emulator",
+    "level": "dev",
+    "authors": "Pedro Teixeira, Штеуд, wackejohn",
+    "body": [
+      "The Peter-Pon team reverse engineered the Packet Engine (GPE) in the Lantiq Falcon GPON SoC. A Falcon SFP stick now runs a PPPoE client with the data path in hardware, at close to line rate.",
+      "On Realtek sticks, NAT runs on the CPU. On Falcon there was no PPPoE or NAT path until the Packet Engine was documented. Testing so far is on an OLT emulator."
+    ],
+    "links": []
+  },
+  {
+    "date": "November 2026",
+    "title": "PPPoE Half-Bridge for Falcon sticks",
+    "platform": "Lantiq Falcon",
+    "status": "Planned",
+    "level": "planned",
+    "authors": "Peter-Pon team",
+    "body": [
+      "Half-Bridge is the next mode on top of the hardware PPPoE path. The stick holds the PPPoE session and leases the public IPv4 address to the router over DHCP, with MTU 1492 in option 26.",
+      "The router WAN runs as a plain DHCP client (IPoE). Hardware offload stays enabled and the router CPU is not used for PPPoE. Any router with a DHCP WAN works, including UniFi, MikroTik and Sophos.",
+      "Downstream, the Packet Engine strips the VLAN tag and the PPPoE and PPP headers. Upstream, it inserts the PPPoE session ID and the VLAN tag. The CPU handles PLOAM, OMCI and PPPoE signalling only."
+    ],
+    "figure": {
+      "src": "assets/falcon-pppoe-half-bridge.svg",
+      "width": 1200,
+      "height": 810,
+      "alt": "Diagram of a Lantiq Falcon GPON SFP in PPPoE Half-Bridge mode. The OLT carries a PPPoE session over fibre to the stick. On the stick, the CPU runs PLOAM and OMCI, the PPPoE client and a DHCP server that leases the IPCP address to a Ubiquiti UDM SE. The Packet Engine strips the VLAN and PPPoE headers downstream and adds them upstream, so the router receives plain IPoE frames.",
+      "caption": "Falcon GPON SFP in PPPoE Half-Bridge between the OLT and a Ubiquiti UDM SE. The address 203.0.113.45 is a documentation example."
+    },
+    "links": []
+  }
+]

@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- ============================ Search ============================ -->
-<title>Open PON Foundation — Open GPON &amp; XGS-PON Firmware</title>
-<meta name="description" content="Open PON Foundation promotes open firmware, cross-vendor compatibility and user-owned equipment for GPON and XGS-PON. Vendor-neutral, privacy-respecting.">
+<title>Open PON Foundation | Open GPON &amp; XGS-PON Firmware</title>
+<meta name="description" content="Open firmware, OLT interoperability and user-owned equipment for GPON and XGS-PON. Lantiq Falcon, Realtek and MediaTek PON platforms. Vendor-neutral.">
 <link rel="canonical" href="https://openpon.org/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <!-- Release version. Bumped by tools/stamp-version.py; main.js reads it from here and
      appends the same ?v= to every data/*.json request. -->
-<meta name="version" content="2026.11.12.1">
+<meta name="version" content="2026.11.23.1">
 <meta name="author" content="Open PON Foundation">
 <meta name="theme-color" content="#662D91">
 <meta name="color-scheme" content="light dark">
@@ -33,23 +33,23 @@
 <meta property="og:site_name" content="Open PON Foundation">
 <meta property="og:locale" content="en">
 <meta property="og:title" content="Open PON Foundation">
-<meta property="og:description" content="Opening the future of network connectivity. Open firmware, cross-vendor compatibility and user-owned equipment for GPON and XGS-PON.">
+<meta property="og:description" content="Open firmware, OLT interoperability and user-owned equipment for GPON and XGS-PON, on Lantiq Falcon, Realtek and MediaTek PON platforms.">
 <meta property="og:url" content="https://openpon.org/">
 <meta property="og:image" content="https://openpon.org/assets/og-cover.png">
 <meta property="og:image:secure_url" content="https://openpon.org/assets/og-cover.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="512">
-<meta property="og:image:alt" content="Open PON Foundation — opening the future of network connectivity">
+<meta property="og:image:alt" content="Open PON Foundation logo with the tagline: Opening the future of network connectivity">
 
 <!-- X / Twitter reads these; most other apps fall back to Open Graph above. -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Open PON Foundation">
-<meta name="twitter:description" content="Opening the future of network connectivity. Open firmware, cross-vendor compatibility and user-owned equipment for GPON and XGS-PON.">
+<meta name="twitter:description" content="Open firmware, OLT interoperability and user-owned equipment for GPON and XGS-PON, on Lantiq Falcon, Realtek and MediaTek PON platforms.">
 <meta name="twitter:image" content="https://openpon.org/assets/og-cover.png">
-<meta name="twitter:image:alt" content="Open PON Foundation — opening the future of network connectivity">
+<meta name="twitter:image:alt" content="Open PON Foundation logo with the tagline: Opening the future of network connectivity">
 
-<link rel="stylesheet" href="css/style.css?v=2026.11.12.1">
+<link rel="stylesheet" href="css/style.css?v=2026.11.23.1">
 
 <!-- ===================== Structured data ========================== -->
 <script type="application/ld+json">
@@ -76,7 +76,10 @@
         "Passive optical network",
         "Open firmware",
         "SFP ONT",
-        "Cross-vendor interoperability"
+        "Cross-vendor interoperability",
+        "Lantiq Falcon",
+        "Realtek RTL9601",
+        "OpenWrt"
       ]
     },
     {
@@ -112,6 +115,8 @@
 
     <nav class="primary-nav" id="primaryNav" aria-label="Primary">
       <a href="#mission">Mission</a>
+      <a href="#news">News</a>
+      <a href="#platforms">Platforms</a>
       <a href="#firmware">Firmware</a>
       <a href="#devices">Devices</a>
       <a href="#coverage">Coverage</a>
@@ -375,14 +380,14 @@
         <p class="eyebrow">Open PON Foundation</p>
         <h1>Opening the future of<br><span class="grad-text">network connectivity</span></h1>
         <p class="lede">
-          Passive optical networks are the last mile for hundreds of millions of subscribers,
-          yet the equipment at the end of that fibre has long been closed, locked and
-          disposable. We work to change that — with open firmware, cross-vendor
-          interoperability and the simple principle that the device in your home should be yours.
+          Open PON Foundation coordinates open firmware for GPON and XGS-PON SFP sticks and ONT
+          gateways. It tracks OLT interoperability, supported host hardware, operator coverage
+          and regional suppliers. Active development covers three platforms: Lantiq Falcon,
+          Realtek and MediaTek.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#mission">Our mission</a>
-          <a class="btn btn-ghost" href="#firmware">Open firmware</a>
+          <a class="btn btn-primary" href="#platforms">Platforms</a>
+          <a class="btn btn-ghost" href="#firmware">Firmware</a>
         </div>
         <ul class="hero-pills">
           <li>Openness</li>
@@ -399,23 +404,23 @@
 
     <div class="container">
       <div class="stat-strip" id="statStrip">
-        <div class="stat"><span class="stat-num" data-stat="countries">&mdash;</span><span class="stat-label">Countries with working deployments</span></div>
-        <div class="stat"><span class="stat-num" data-stat="firmware">&mdash;</span><span class="stat-label">Open vendor firmware projects</span></div>
-        <div class="stat"><span class="stat-num" data-stat="people">&mdash;</span><span class="stat-label">Key contributors worldwide</span></div>
-        <div class="stat"><span class="stat-num" data-stat="devices">&mdash;</span><span class="stat-label">Supported device families</span></div>
+        <div class="stat"><span class="stat-num" data-stat="countries">&ndash;</span><span class="stat-label">Countries with reported deployments</span></div>
+        <div class="stat"><span class="stat-num" data-stat="firmware">&ndash;</span><span class="stat-label">Open vendor firmware projects</span></div>
+        <div class="stat"><span class="stat-num" data-stat="people">&ndash;</span><span class="stat-label">Credited contributors</span></div>
+        <div class="stat"><span class="stat-num" data-stat="devices">&ndash;</span><span class="stat-label">Supported host vendors</span></div>
       </div>
     </div>
   </section>
 
   <!-- ================= MISSION ================= -->
-  <section class="section" id="mission">
+  <section class="section section-alt" id="mission">
     <div class="container">
       <header class="section-head">
         <p class="section-eyebrow">Mission</p>
-        <h2>An open last mile, built on principles that already have a track record</h2>
+        <h2>Scope and principles</h2>
         <p class="section-lede">
-          Open PON Foundation is a volunteer, vendor-neutral effort. Our vision aligns with three
-          organisations that have already proven these ideas at scale.
+          Open PON Foundation is a vendor-neutral volunteer project. Its scope follows three
+          established organisations.
         </p>
       </header>
 
@@ -423,20 +428,20 @@
         <article class="aligned-card">
           <h3>Electronic Frontier Foundation</h3>
           <p class="aligned-tag">User rights &amp; privacy</p>
-          <p>The right to understand, repair and control the hardware you paid for &mdash; and to keep
-             what happens on your connection private.</p>
+          <p>Owners can inspect, repair and control the hardware they purchased. Traffic on the
+             subscriber connection stays private.</p>
         </article>
         <article class="aligned-card">
           <h3>Open Networking Foundation</h3>
           <p class="aligned-tag">Open, disaggregated networks</p>
-          <p>Open PON standards and interoperable, software-defined access, rather than a network
-             defined end to end by a single vendor.</p>
+          <p>Open PON standards and interoperable, software-defined access instead of a network
+             defined end to end by one vendor.</p>
         </article>
         <article class="aligned-card">
           <h3>Linux Foundation</h3>
           <p class="aligned-tag">Open collaboration</p>
-          <p>Neutral governance, shared engineering effort and open source as the practical way to
-             build infrastructure that outlives any one company.</p>
+          <p>Neutral governance, shared engineering and open source development for long-lived
+             infrastructure.</p>
         </article>
       </div>
 
@@ -457,53 +462,88 @@
             <svg viewBox="0 0 24 24"><rect x="3" y="7" width="7.5" height="10" rx="1.5"/><rect x="13.5" y="7" width="7.5" height="10" rx="1.5"/><path d="M10.5 12h3"/></svg>
           </div>
           <h3>Cross-vendor compatibility</h3>
-          <p>One stick that speaks to many OLTs. Compatibility work sits at the core of every firmware
-             project we support, because interoperability is what makes choice real.</p>
+          <p>Each listed firmware project targets OLTs from multiple vendors. OMCI, VLAN and
+             vendor-specific managed entity handling is part of each project.</p>
         </article>
         <article class="pillar">
           <div class="pillar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3.5v11"/><path d="M7.5 10l4.5 4.5 4.5-4.5"/><path d="M4 20h16"/></svg>
           </div>
           <h3>Ease of access</h3>
-          <p>Clear guides, reachable regional suppliers and tooling that does not demand a lab bench.
-             Knowledge that stays locked inside private forums helps no one.</p>
+          <p>Guides, tooling and supplier lists are public. Flashing and configuration use standard
+             hardware such as a CH341A programmer.</p>
         </article>
         <article class="pillar">
           <div class="pillar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 4l8.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19z"/><path d="M9.5 20.5v-6h5v6"/></svg>
           </div>
           <h3>User-owned equipment</h3>
-          <p>Your ONT is part of your network, not an unremovable extension of the operator&rsquo;s.
-             Bring your own device, keep your own router, replace it when you choose.</p>
+          <p>The ONT is subscriber equipment. The subscriber selects, configures and replaces the
+             ONT and the router.</p>
         </article>
         <article class="pillar">
           <div class="pillar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
           </div>
           <h3>Privacy</h3>
-          <p>No vendor cloud, no silent telemetry. Where an operator mandates TR-069, the firmware
-             emulates it &mdash; management gets its answer, and nothing personal leaves your
-             network.</p>
+          <p>Listed firmware has no vendor cloud and no telemetry. Where an operator requires
+             TR-069, the firmware emulates the endpoint and does not report subscriber data.</p>
         </article>
         <article class="pillar pillar-note">
-          <h3>A word on responsibility</h3>
-          <p>Open PON Foundation discourages reckless DIY deployment. PON is a <strong>shared</strong>
-             medium &mdash; one misbehaving ONU affects every subscriber on the split.</p>
-          <a class="inline-link" href="#safety">Read the safety notice &rarr;</a>
+          <h3>Responsibility</h3>
+          <p>PON is a <strong>shared</strong> medium. One misbehaving ONU affects every subscriber
+             on the same splitter. Open PON Foundation does not support unplanned DIY deployment.</p>
+          <a class="inline-link" href="#safety">Safety notice &rarr;</a>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- ================= NEWS ================= -->
+  <section class="section" id="news">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">News</p>
+        <h2>Development updates</h2>
+        <p class="section-lede">
+          Status of ongoing work. Each item carries the state at the time of posting.
+        </p>
+      </header>
+      <div class="news-list" id="newsList" data-loading>
+        <p class="loading">Loading news&hellip;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLATFORMS ================= -->
+  <section class="section section-alt" id="platforms">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Platforms</p>
+        <h2>Three major Open PON development tracks</h2>
+        <p class="section-lede">
+          Development is grouped by PON SoC vendor. Each track has its own firmware, target
+          hardware and contributors.
+        </p>
+      </header>
+      <div class="platform-grid" id="platformGrid" data-loading>
+        <p class="loading">Loading platforms&hellip;</p>
+      </div>
+      <p class="section-foot">
+        XGS-PON firmware (8311, CA8271x) is listed under <a href="#firmware">Open Vendor Firmware</a>.
+      </p>
+    </div>
+  </section>
+
   <!-- ================= FIRMWARE ================= -->
-  <section class="section section-alt" id="firmware">
+  <section class="section" id="firmware">
     <div class="container">
       <header class="section-head">
         <p class="section-eyebrow">Open Vendor Firmware</p>
         <h2>Independent firmware for GPON and XGS-PON</h2>
         <p class="section-lede">
-          Community-built firmware projects, each maintained by the people who reverse engineered the
-          platform it runs on.
+          Community firmware for PON SFP sticks and ONT gateways. Each project is maintained by
+          the developers who reverse engineered its platform.
         </p>
       </header>
       <div class="firmware-grid" id="firmwareGrid" data-loading>
@@ -524,16 +564,33 @@
     </div>
   </section>
 
+  <!-- ================= ACHIEVEMENTS ================= -->
+  <section class="section section-alt" id="achievements">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-eyebrow">Achievements</p>
+        <h2>Field results</h2>
+        <p class="section-lede">
+          Deployments where a PON stick replaced the operator ONT, as reported by users and
+          contributors.
+        </p>
+      </header>
+      <div id="achievementsBody" data-loading>
+        <p class="loading">Loading achievements&hellip;</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= DEVICES ================= -->
   <section class="section" id="devices">
     <div class="container">
       <header class="section-head">
         <p class="section-eyebrow">Supported Devices</p>
-        <h2>Hardware known to host our sticks</h2>
+        <h2>Supported host hardware</h2>
         <p class="section-lede">
-          Compatibility is reported from field deployments. Always validate your specific model and
-          firmware revision before rolling out. Pair an open stick with an OpenWrt host and the whole
-          path from the fibre to the LAN is open source.
+          Compatibility data comes from field deployments. Validate the exact model and firmware
+          revision before deployment. An OpenWrt host with an open-firmware stick runs open source
+          software from the fibre to the LAN.
         </p>
       </header>
       <div class="device-grid" id="deviceGrid" data-loading>
@@ -547,10 +604,10 @@
     <div class="container">
       <header class="section-head">
         <p class="section-eyebrow">Coverage</p>
-        <h2>Countries where it works today</h2>
+        <h2>Countries with reported deployments</h2>
         <p class="section-lede">
-          Working deployments reported by the community. Operator names are listed where contributors
-          have verified them directly.
+          Deployments reported by contributors. Operators are listed only where a contributor has
+          verified them.
         </p>
       </header>
       <div class="coverage-regions" id="coverageRegions" data-loading>
@@ -566,7 +623,8 @@
         <p class="section-eyebrow">Key People</p>
         <h2>The people behind the foundation</h2>
         <p class="section-lede">
-          Developers, testers and reverse engineers across four continents, working in the open.
+          Developers, testers and reverse engineers credited by name. Leads maintain a firmware
+          project or a platform.
         </p>
       </header>
       <div class="people-grid" id="peopleGrid" data-loading>
@@ -580,10 +638,10 @@
     <div class="container">
       <header class="section-head">
         <p class="section-eyebrow">Supporters</p>
-        <h2>Companies backing this movement</h2>
+        <h2>Supporting companies</h2>
         <p class="section-lede">
-          Operators, integrators and technology companies that support open PON in production
-          networks, not just on the bench.
+          Operators, integrators and technology companies that support open PON equipment in
+          production networks.
         </p>
       </header>
       <div class="company-grid" id="companyGrid" data-loading>
@@ -597,27 +655,27 @@
     <div class="container">
       <header class="section-head">
         <p class="section-eyebrow">Regional Suppliers</p>
-        <h2>Where to source a stick, and who can deploy it</h2>
+        <h2>Hardware supply and deployment</h2>
         <p class="section-lede">
-          Regional suppliers and resellers who understand the local operator landscape. Engaging a
-          professional integrator is strongly preferred over self-deployment.
+          Regional suppliers and resellers with local operator experience. Where an integrator is
+          available, use the integrator instead of self-deployment.
         </p>
       </header>
       <ul class="supplier-legend">
         <li>
           <span class="supplier-tier tier-msp">Managed IT &middot; MSP</span>
-          <span>Takes the deployment end to end &mdash; fibre, ONT, routing and access points
-          &mdash; with every piece procured in your own name.</span>
+          <span>Handles the full deployment: fibre, ONT, routing and access points. All equipment
+          is procured in the customer's name.</span>
         </li>
         <li>
           <span class="supplier-tier tier-trade">Trade supply</span>
-          <span>A business you buy hardware from, deployment left to you or your own
+          <span>Business that sells hardware. Deployment is done by the buyer or the buyer's
           integrator.</span>
         </li>
         <li>
           <span class="supplier-tier tier-community">Community supply</span>
-          <span>An individual who supplies sticks and helps with firmware. Their time is given
-          voluntarily, so treat it as a favour rather than a support contract.</span>
+          <span>Individual who supplies sticks and firmware help on a voluntary basis. No support
+          contract applies.</span>
         </li>
       </ul>
 
@@ -675,8 +733,9 @@
             <li>Proceed with discipline.</li>
           </ul>
           <p class="safety-note">
-            A live network is not a place to experiment. Have your deployment planned, installed and
-            tested by a professional &mdash; that is what our regional integrators are for.
+            A live network is not a place to experiment. Have the deployment planned, installed and
+            tested by a professional. See <a href="#suppliers">Regional Suppliers</a> for
+            integrators.
           </p>
         </div>
 
@@ -712,11 +771,14 @@
       <div>
         <h4>Foundation</h4>
         <a href="#mission">Mission</a>
+        <a href="#news">News</a>
+        <a href="#achievements">Achievements</a>
         <a href="#people">Key people</a>
         <a href="#supporters">Supporters</a>
       </div>
       <div>
         <h4>Technology</h4>
+        <a href="#platforms">Platforms</a>
         <a href="#firmware">Open firmware</a>
         <a href="#devices">Supported devices</a>
         <a href="#coverage">Coverage</a>
@@ -735,7 +797,7 @@
       <a class="sponsor-card" href="https://perfect.my" target="_blank" rel="noopener noreferrer">
         <img src="assets/perfect.png" alt="Perfect Network">
       </a>
-      <p class="sponsor-caption">Proudly sponsored by Perfect Network</p>
+      <p class="sponsor-caption">Sponsored by Perfect Network</p>
     </div>
   </div>
 
@@ -745,6 +807,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=2026.11.12.1"></script>
+<script src="js/main.js?v=2026.11.23.1"></script>
 </body>
 </html>

@@ -26,19 +26,34 @@ tools/              release helpers (not part of the site)
 Every list on the page is driven by JSON in `data/`. Edit the file, reload the page, done —
 no markup to touch.
 
-| File             | Section on the page  |
-| ---------------- | -------------------- |
-| `firmware.json`  | Open Vendor Firmware |
-| `devices.json`   | Supported Devices    |
-| `countries.json` | Coverage             |
-| `people.json`    | Key People           |
-| `companies.json` | Supporters           |
-| `suppliers.json` | Regional Suppliers   |
+| File                | Section on the page  |
+| ------------------- | -------------------- |
+| `news.json`         | News                 |
+| `platforms.json`    | Platforms            |
+| `firmware.json`     | Open Vendor Firmware |
+| `achievements.json` | Achievements         |
+| `devices.json`      | Supported Devices    |
+| `countries.json`    | Coverage             |
+| `people.json`       | Key People           |
+| `companies.json`    | Supporters           |
+| `suppliers.json`    | Regional Suppliers   |
 
 Notes:
 
+* Status chips: `news.json`, `platforms.json` and the `variants` in `firmware.json` take a
+  `status` (the label shown) and a `level` (the colour): `stable`, `beta`, `dev`,
+  `experimental` or `planned`. Omit `status` to show no chip.
+* `news.json`: newest first. `body` is an array of paragraphs. `figure` is optional:
+  `{ "src", "width", "height", "alt", "caption" }`. `links` is optional: `[{ "label", "url" }]`.
+* `platforms.json`: one entry per development track. `specs` is a list of
+  `{ "label", "value" }` rows. Each `projects` entry takes `name`, `note`, and optional `url`,
+  `status` and `level`.
+* `achievements.json`: `highlights` render as wide cards with `milestones`, `links` and an
+  optional `image` (same shape as a news `figure`). `stories` is the success story list,
+  mirrored from the RTL960x README. `note` and `noteUrl` are optional on each story.
 * `firmware.json` — exactly one entry should carry `"featured": true`. It renders as the wide
-  flagship card and is the only one that shows its `features` list.
+  flagship card and is the only one that shows its `features` and `variants` lists. Each
+  variant takes `name`, `status`, `level`, `target` and `base`.
 * `devices.json` — `level` is `full` (green badge) or `good` (blue badge).
 * `countries.json` — `region` groups the cards; the hero counter reads the array length, so
   adding a country updates the count automatically.

@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Lantiq Falcon",
+    "scope": "SFP PON",
+    "summary": "GPON SFP sticks on the Lantiq FALC ON SoC. The Peter-Pon team reverse engineered the Packet Engine, so PPPoE can run in hardware on the stick.",
+    "specs": [
+      { "label": "Form factor", "value": "GPON SFP stick" },
+      { "label": "Hardware", "value": "Huawei MA5671A, Nokia G-010S-P, Nokia G-010S-A" },
+      { "label": "Contributors", "value": "Pedro Teixeira, Штеуд, wackejohn" }
+    ],
+    "projects": [
+      { "name": "Peter-Pon", "note": "SFP firmware", "status": "Active", "level": "dev" },
+      { "name": "Hardware PPPoE", "note": "Packet Engine data path", "status": "Emulator", "level": "dev" },
+      { "name": "PPPoE Half-Bridge", "note": "Public IPv4 to the router over DHCP", "status": "Planned", "level": "planned" }
+    ]
+  },
+  {
+    "name": "Realtek",
+    "scope": "SFP PON and OpenWrt ONT",
+    "summary": "RTL9601 and RTL9602 SFP sticks, and RTL9607DQ ONT gateways. RTL9601 OSS replaces the vendor userland with Linux 6.18 and open switch, GPON and OMCI drivers on any RTL9601 stick.",
+    "specs": [
+      { "label": "Form factor", "value": "GPON SFP stick, GPON ONT gateway" },
+      { "label": "SFP hardware", "value": "ODI DFP-34X-2C2, VSOL V2801F, TWC TWCGPON657, Ubiquiti UF-Instant, D-Link DPN-100" },
+      { "label": "ONT hardware", "value": "D-Link DPN-FX3060V (A1)" }
+    ],
+    "projects": [
+      { "name": "NIJIKA", "note": "SFP firmware, RTL9601CI and RTL9601D", "status": "Stable", "level": "stable", "url": "https://github.com/Anime4000/RTL960x" },
+      { "name": "NIJIKA-Luna", "note": "SFP firmware on RTL9601 OSS", "status": "In development", "level": "dev", "url": "https://github.com/PururinCollective/rtl9601-nijika-ui" },
+      { "name": "RTL9601 OSS", "note": "Open base OS for RTL9601 sticks", "url": "https://github.com/AndreZiviani/odi-oss" },
+      { "name": "CatOS", "note": "SFP firmware, RTL9601" },
+      { "name": "ZRV OS", "note": "SFP firmware, RTL9602" },
+      { "name": "NijikaWrt", "note": "OpenWrt ONT, RTL9607DQ", "status": "Experimental", "level": "experimental", "url": "https://github.com/PururinCollective/dpn-fx3060v-a1-openwrt" }
+    ]
+  },
+  {
+    "name": "MediaTek",
+    "scope": "OpenWrt ONT, BPI-R4 + PON stick",
+    "summary": "OpenWrt on Airoha EN7581 ONT gateways, and the Banana Pi BPI-R4 as an OpenWrt host for a GPON or XGS-PON stick in its SFP+ cage.",
+    "specs": [
+      { "label": "Form factor", "value": "ONT gateway, router with PON stick" },
+      { "label": "ONT hardware", "value": "Skyworth SK-G7220 (Airoha EN7581, Wi-Fi 7)" },
+      { "label": "Host hardware", "value": "Banana Pi BPI-R4 (Filogic 880, 2x SFP+)" }
+    ],
+    "projects": [
+      { "name": "RemixWrt IIDX", "note": "OpenWrt and LuCI, Airoha EN7581", "status": "Beta", "level": "beta", "url": "https://github.com/PururinCollective/sk-g7220-openwrt" },
+      { "name": "BPI-R4 + PON stick", "note": "OpenWrt host, open firmware on the stick" }
+    ]
+  }
+]

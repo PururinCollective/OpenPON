@@ -3,23 +3,73 @@
     "name": "NIJIKA Firmware",
     "authors": "Anime4000, rajkosto, stich86, O3, et al.",
     "technology": "GPON",
-    "chipset": "RTL960x",
+    "chipset": "RTL9601 · RTL9607DQ",
     "featured": true,
-    "summary": "A modern open firmware for Realtek GPON sticks, built for broad operator compatibility and real observability.",
+    "summary": "Firmware family for Realtek GPON hardware. NIJIKA runs on the vendor firmware of RTL9601 sticks. NIJIKA-Luna moves the stick to an open base. NijikaWrt runs OpenWrt on a full ONT gateway.",
     "features": [
-      "Major OLT compatibility across regional operators",
+      "Interoperates with major OLT vendors across regional operators",
       "VEIP (Virtual Ethernet Interface Point) support",
-      "Unbound link speed, 1GbE to 2.5GbE",
-      "Metric export to Prometheus and Grafana"
+      "Host link from 1GbE to 2.5GbE",
+      "Metrics export to Prometheus and Grafana"
+    ],
+    "variants": [
+      {
+        "name": "NIJIKA",
+        "status": "Stable",
+        "level": "stable",
+        "target": "RTL9601CI and RTL9601D SFP sticks",
+        "base": "Realtek vendor firmware"
+      },
+      {
+        "name": "NIJIKA-Luna",
+        "status": "In development",
+        "level": "dev",
+        "target": "RTL9601D SFP sticks",
+        "base": "RTL9601 OSS, Linux 6.18, open switch, GPON and OMCI drivers. Nijika UI, nijika CLI in C, trial boot with automatic fallback"
+      },
+      {
+        "name": "NijikaWrt",
+        "status": "Experimental",
+        "level": "experimental",
+        "target": "D-Link DPN-FX3060V (A1), RTL9607DQ ONT",
+        "base": "OpenWrt 25.12 and LuCI on the Realtek 5.10 kernel. Vendor stack keeps PON, OMCI and voice"
+      }
     ]
   },
   {
+    "name": "Peter-Pon",
+    "authors": "Pedro Teixeira, Штеуд, wackejohn",
+    "technology": "GPON",
+    "chipset": "Lantiq Falcon",
+    "featured": false,
+    "summary": "Firmware for Lantiq Falcon GPON SFP sticks. Includes a reverse engineered Packet Engine with hardware PPPoE. PPPoE Half-Bridge is planned.",
+    "features": []
+  },
+  {
+    "name": "CatOS",
+    "authors": "CATCrypt",
+    "technology": "GPON",
+    "chipset": "RTL9601",
+    "featured": false,
+    "summary": "Firmware for RTL9601 GPON SFP sticks, developed for operator networks in Belarus.",
+    "features": []
+  },
+  {
     "name": "ZRV OS",
-    "authors": "\u00c1nzelox Zeravl\u00e1, et al.",
+    "authors": "Ánzelox Zeravlá, et al.",
     "technology": "GPON",
     "chipset": "RTL9602",
     "featured": false,
-    "summary": "An independent operating system for RTL9602 based ONT, born out of clean-room reverse engineering.",
+    "summary": "Independent operating system for RTL9602-based ONTs, written from clean-room reverse engineering.",
+    "features": []
+  },
+  {
+    "name": "RemixWrt IIDX",
+    "authors": "Pururin Collective",
+    "technology": "GPON",
+    "chipset": "Airoha EN7581",
+    "featured": false,
+    "summary": "OpenWrt 25.12 and LuCI on Airoha EN7581 ONT gateways, starting with the Skyworth SK-G7220. Adds ONT authentication, identity and OMCI topology pages. One firmware bank keeps the stock image for recovery. Beta (r20).",
     "features": []
   },
   {
@@ -28,7 +78,7 @@
     "technology": "XGS-PON",
     "chipset": "8311",
     "featured": false,
-    "summary": "The reference open firmware project for XGS-PON sticks, widely used for 10G subscriber deployments.",
+    "summary": "Reference open firmware for XGS-PON SFP+ sticks. Used in 10G subscriber deployments.",
     "features": []
   },
   {
@@ -37,7 +87,7 @@
     "technology": "XGS-PON",
     "chipset": "CA8271x",
     "featured": false,
-    "summary": "Open firmware targeting CA8271x XGS-PON hardware, with a focus on Japanese operator interoperability.",
+    "summary": "Open firmware for CA8271x XGS-PON hardware. Targets interoperability with Japanese operators.",
     "features": []
   }
 ]

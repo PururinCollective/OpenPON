@@ -74,12 +74,46 @@
     return clean.slice(0, 2).toUpperCase();
   }
 
+  /* Status chip for anything with a release state: firmware variants, platform projects,
+     news items. `level` picks the colour; an unknown or missing level renders neutral. */
+  var STATUS_LEVELS = ['stable', 'beta', 'dev', 'experimental', 'planned'];
+
+  function statusChip(label, level) {
+    if (!label) return '';
+    var cls = STATUS_LEVELS.indexOf(level) >= 0 ? ' status-' + level : '';
+    return '<span class="status' + cls + '">' + esc(label) + '</span>';
+  }
+
+  function extLink(url, text, cls) {
+    return '<a' + (cls ? ' class="' + cls + '"' : '') + ' href="' + esc(url) +
+           '" target="_blank" rel="noopener noreferrer">' + esc(text) + '</a>';
+  }
+
+  function linkList(links) {
+    if (!links || !links.length) return '';
+    return '<ul class="link-list">' + links.map(function (l) {
+      return '<li>' + extLink(l.url, l.label) + '</li>';
+    }).join('') + '</ul>';
+  }
+
+  /* Image with caption. The image links to the full-size file. */
+  function figure(f, cls) {
+    var size = f.width ? ' width="' + esc(f.width) + '" height="' + esc(f.height) + '"' : '';
+    return '<figure class="' + cls + '">' +
+             '<a href="' + esc(f.src) + '" target="_blank" rel="noopener" aria-label="Open image at full size">' +
+               '<img src="' + esc(f.src) + '" alt="' + esc(f.alt) + '"' + size +
+               ' loading="lazy" decoding="async">' +
+             '</a>' +
+             (f.caption ? '<figcaption>' + esc(f.caption) + '</figcaption>' : '') +
+           '</figure>';
+  }
+
   function fail(container, file) {
     container.removeAttribute('data-loading');
     container.innerHTML =
       '<div class="data-error">Could not load <code>data/' + esc(file) + '</code>. ' +
-      'This page reads its content from JSON over HTTP &mdash; serve the folder with ' +
-      '<code>python -m http.server</code> rather than opening the file directly.</div>';
+      'This page loads its content from JSON over HTTP. Serve the folder with ' +
+      '<code>python -m http.server</code> instead of opening the file directly.</div>';
   }
 
   function loadJSON(file) {
@@ -124,10 +158,25 @@
           }).join('') + '</ul>'
         : '';
 
+      /* Builds of the same firmware for different targets, featured card only. */
+      var variants = (fw.featured && fw.variants && fw.variants.length)
+        ? '<div class="fw-variants">' + fw.variants.map(function (v) {
+            return '<div class="fw-variant">' +
+                     '<div class="fw-variant-head">' +
+                       '<h4>' + esc(v.name) + '</h4>' + statusChip(v.status, v.level) +
+                     '</div>' +
+                     '<dl>' +
+                       '<dt>Target</dt><dd>' + esc(v.target) + '</dd>' +
+                       '<dt>Base</dt><dd>' + esc(v.base) + '</dd>' +
+                     '</dl>' +
+                   '</div>';
+          }).join('') + '</div>'
+        : '';
+
       if (fw.featured) {
         return '<article class="fw-card is-featured">' +
                  '<div class="fw-main">' + head + meta + summary + '</div>' +
-                 features +
+                 features + variants +
                '</article>';
       }
       return '<article class="fw-card">' + head + meta + summary + features + '</article>';
@@ -158,7 +207,7 @@
       var pick = d.recommended
         ? '<p class="device-pick">' +
             '<span class="device-pick-label">Recommended</span>' +
-            '<b>' + esc(d.recommended.model) + '</b> &mdash; ' + esc(d.recommended.note) +
+            '<b>' + esc(d.recommended.model) + '</b>: ' + esc(d.recommended.note) +
           '</p>'
         : '';
 
@@ -177,6 +226,121 @@
                features +
              '</article>';
     }).join('');
+
+    el.removeAttribute('data-loading');
+  }
+
+  function renderNews(list, el) {
+    el.innerHTML = list.map(function (n) {
+      var meta =
+        '<div class="news-meta">' +
+          '<span class="news-date">' + esc(n.date) + '</span>' +
+          (n.platform ? '<span class="fw-chip">' + esc(n.platform) + '</span>' : '') +
+          statusChip(n.status, n.level) +
+        '</div>';
+
+      var body = (n.body || []).map(function (p) {
+        return '<p>' + esc(p) + '</p>';
+      }).join('');
+
+      var credit = n.authors
+        ? '<p class="news-by">Credit: <b>' + esc(n.authors) + '</b></p>'
+        : '';
+
+      return '<article class="news-item">' + meta +
+               '<div class="news-body">' +
+                 '<h3>' + esc(n.title) + '</h3>' + body + credit + linkList(n.links) +
+                 (n.figure ? figure(n.figure, 'news-figure') : '') +
+               '</div>' +
+             '</article>';
+    }).join('');
+
+    el.removeAttribute('data-loading');
+  }
+
+  function renderPlatforms(list, el) {
+    el.innerHTML = list.map(function (p) {
+      var specs = (p.specs || []).map(function (s) {
+        return '<dt>' + esc(s.label) + '</dt><dd>' + esc(s.value) + '</dd>';
+      }).join('');
+
+      var projects = (p.projects || []).map(function (pr) {
+        var name = pr.url ? extLink(pr.url, pr.name) : esc(pr.name);
+        return '<li>' +
+                 '<span class="platform-project">' +
+                   '<b>' + name + '</b>' +
+                   (pr.note ? '<span class="platform-project-note">' + esc(pr.note) + '</span>' : '') +
+                 '</span>' +
+                 statusChip(pr.status, pr.level) +
+               '</li>';
+      }).join('');
+
+      return '<article class="platform">' +
+               '<div class="platform-head">' +
+                 '<span class="platform-scope">' + esc(p.scope) + '</span>' +
+                 '<h3>' + esc(p.name) + '</h3>' +
+               '</div>' +
+               '<p class="platform-summary">' + esc(p.summary) + '</p>' +
+               (specs ? '<dl class="platform-specs">' + specs + '</dl>' : '') +
+               (projects
+                 ? '<h4 class="platform-sub">Projects</h4><ul class="platform-projects">' + projects + '</ul>'
+                 : '') +
+             '</article>';
+    }).join('');
+
+    el.removeAttribute('data-loading');
+  }
+
+  function renderAchievements(data, el) {
+    var highlights = (data.highlights || []).map(function (h) {
+      var steps = (h.milestones || []).map(function (m) {
+        return '<li>' +
+                 '<span class="achieve-date">' + esc(m.date) + '</span>' +
+                 '<p>' + esc(m.text) + (m.url ? ' ' + extLink(m.url, m.link || 'Source') : '') + '</p>' +
+               '</li>';
+      }).join('');
+
+      return '<article class="achieve-feature">' +
+               '<div class="achieve-main">' +
+                 '<div class="achieve-head">' +
+                   (h.code ? '<span class="cc">' + esc(h.code) + '</span>' : '') +
+                   '<h3>' + esc(h.title) + '</h3>' +
+                 '</div>' +
+                 '<p class="achieve-summary">' + esc(h.summary) + '</p>' +
+                 (steps ? '<ol class="achieve-steps">' + steps + '</ol>' : '') +
+                 linkList(h.links) +
+               '</div>' +
+               (h.image ? figure(h.image, 'achieve-figure') : '') +
+             '</article>';
+    }).join('');
+
+    var stories = (data.stories || []).map(function (s) {
+      var note = '';
+      if (s.note) {
+        note = s.noteUrl
+          ? extLink(s.noteUrl, s.note, 'story-note')
+          : '<span class="story-note">' + esc(s.note) + '</span>';
+      }
+      return '<li>' +
+               extLink(s.url, s.title, 'story-title') +
+               '<span class="story-meta">' +
+                 '<span class="story-site">' + esc(s.site) + '</span>' + note +
+               '</span>' +
+             '</li>';
+    }).join('');
+
+    var source = data.source
+      ? '<a class="inline-link" href="' + esc(data.source.url) +
+        '" target="_blank" rel="noopener noreferrer">' + esc(data.source.label) + ' &rarr;</a>'
+      : '';
+
+    el.innerHTML = highlights +
+      (stories
+        ? '<div class="stories">' +
+            '<div class="stories-head"><h3>Success stories</h3>' + source + '</div>' +
+            '<ol class="story-list">' + stories + '</ol>' +
+          '</div>'
+        : '');
 
     el.removeAttribute('data-loading');
   }
@@ -458,7 +622,8 @@
   function reveal(root) {
     var selectors = [
       '.section-head', '.aligned-card', '.pillar', '.fw-card', '.device-card',
-      '.region-block', '.person', '.company', '.supplier-region', '.safety-card', '.stat'
+      '.region-block', '.person', '.company', '.supplier-region', '.safety-card', '.stat',
+      '.news-item', '.platform', '.achieve-feature', '.stories'
     ].join(',');
 
     $$(selectors, root || document).forEach(function (el, i) {
@@ -503,6 +668,9 @@
     initReveal();
     reveal(document);
 
+    section('news.json', 'newsList', renderNews);
+    section('platforms.json', 'platformGrid', renderPlatforms);
+    section('achievements.json', 'achievementsBody', renderAchievements);
     section('firmware.json', 'firmwareGrid', renderFirmware, function (d) {
       setStat('firmware', d.length);
     });
